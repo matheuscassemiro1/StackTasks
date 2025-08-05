@@ -1,0 +1,13 @@
+.div-login {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    min-width: 400px;
+    min-height: 250px;
+    border: none;
+    box-shadow: 1px 1px 4px 1px black;
+}
