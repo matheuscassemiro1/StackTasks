@@ -18,3 +18,13 @@ export const Button = styled.button < { $primary?: boolean; }> `
     background: ${props => (props.$primary ? '#01af6fff' : '#a09e9eff')};;
     }
 `
+
+export const Input = styled.input<{ $dark?: boolean; }>`
+    background: #e9e9e9ff;
+    padding: 10px;
+    border: none;
+
+    &::placeholder{
+        color: ${props => props.$dark ? 'white' : 'gray'};
+    }
+`

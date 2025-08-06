@@ -2,7 +2,20 @@ body {
     background-color: rgb(17, 109, 230);
 }
 
-.div-welcome{
+a {
+    text-decoration: none;
+    color: rgb(6, 141, 252);
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+a:hover {
+    text-shadow: 1px 1px 5px rgb(6, 141, 252);
+    cursor: pointer;
+}
+
+.div-welcome {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,4 +24,23 @@ body {
     width: 100vw;
     overflow: hidden;
     box-sizing: border-box;
+}
+
+.div-login {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 5px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 400px;
+    max-width: 80%;
+    height: auto;
+    max-height: 80%;
+    border: none;
+    box-shadow: 1px 1px 4px 1px black;
+    text-align: center;
+    overflow: hidden;
 }
