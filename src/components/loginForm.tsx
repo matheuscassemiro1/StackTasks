@@ -38,7 +38,7 @@ export const LoginForm: React.FC = () => {
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         if (validateForm()) {
-            console.log("form ok, submitted")
+            console.log("form ok, submitted");
         }
     }
 
