@@ -2,16 +2,18 @@ body {
     background-color: rgb(17, 109, 230);
 }
 
-a {
+.botao-auxiliar {
     text-decoration: none;
     color: rgb(6, 141, 252);
     font-weight: bold;
     font-size: 1em;
     margin-bottom: 10px;
+    border: none;
+    background-color: transparent;
 }
 
-a:hover {
-    text-shadow: 1px 1px 5px rgb(6, 141, 252);
+.botao-auxiliar:hover {
+    text-shadow: 1px 1px 10px rgb(6, 141, 252);
     cursor: pointer;
 }
 
