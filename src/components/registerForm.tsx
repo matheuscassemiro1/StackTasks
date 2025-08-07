@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./loginForms.css"
 import { Button, Input } from "../styles/global";
+import { ErroForm } from "../types/erroForm";
 
 export const RegisterForm: React.FC = () => {
     type FormRegister = {
@@ -9,12 +10,7 @@ export const RegisterForm: React.FC = () => {
         senha?: string
     }
 
-    type Erro = {
-        campo: string,
-        mensagem: string
-    }
-
-    const [errors, setErrors] = useState<Erro[]>([]);
+    const [errors, setErrors] = useState<ErroForm[]>([]);
 
     const [isFormValid, setFormStatus] = useState<boolean>(false);
 
@@ -32,7 +28,7 @@ export const RegisterForm: React.FC = () => {
     }
 
     function validateRegisterForm(): boolean {
-        let errosTemp: Erro[] = [];
+        let errosTemp: ErroForm[] = [];
 
         if (!formularioRegistro?.nome || formularioRegistro?.nome?.length < 3) {
             errosTemp.push({ campo: "nome", mensagem: "Preencha o nome com pelo menos 3 letras" });

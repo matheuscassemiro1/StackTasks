@@ -1,0 +1,39 @@
+.topbar {
+    background-color: rgb(255, 180, 17);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.flex1 {
+    flex: 1;
+    display: flex;
+}
+
+.logotipo {
+    padding: 10px;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.justify-start {
+    justify-content: start !important;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: end;
+}
+
+.div-logo {
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+
+    width: 100%;
+}
