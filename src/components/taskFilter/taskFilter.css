@@ -1,0 +1,42 @@
+.divFilters {
+    display: block;
+    border-right: 2px solid gray;
+    width: 100%;
+    max-width: 25vw;
+    height: 100vh;
+    padding-right: 20px;
+}
+
+.topicFilters {
+    margin-top: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.topicFilters>div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2px;
+    gap: 5px;
+    flex: 1;
+    margin-left: 15px;
+    padding: 0;
+}
+
+.topicFilters>span {
+    margin-left: 10px;
+    font-size: 0.8rem;
+    color: rgb(168, 168, 168);
+}
+
+.option {
+    font-size: 1.3rem;
+    padding: 5px;
+    color: rgb(68, 68, 68);
+}
+
+.option:hover {
+    cursor: pointer;
+    background-color: rgb(173, 216, 252);
+}
