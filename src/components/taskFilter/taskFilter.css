@@ -1,6 +1,6 @@
 .divFilters {
     display: block;
-    border-right: 2px solid gray;
+    border-right: 1px solid gray;
     width: 100%;
     max-width: 25vw;
     height: 100vh;
@@ -31,7 +31,7 @@
 }
 
 .option {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     padding: 5px;
     color: rgb(68, 68, 68);
 }
@@ -39,4 +39,15 @@
 .option:hover {
     cursor: pointer;
     background-color: rgb(173, 216, 252);
+}
+
+.tag{
+    cursor: pointer;
+    background-color: rgb(212, 212, 212);
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+    padding-top: 0;
+    font-size: 0.8rem;
+    vertical-align: middle;
 }

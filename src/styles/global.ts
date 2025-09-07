@@ -8,7 +8,7 @@ export const Button = styled.button < { $primary?: boolean; $small?: boolean }> 
     padding: 5px;
     border: none;
     border-radius: 3px;
-    margin: 10px;
+    margin: 5px;
 
     &:hover{
         cursor: pointer;
@@ -32,12 +32,9 @@ export const Input = styled.input<{ $dark?: boolean; $small?: boolean}>`
         color: ${props => props.$dark ? 'white' : 'gray'};
     }
 `
-
-export const Datalist = styled.datalist`
-    width: 100px;
-
-`
-
-export const Option = styled.option`
-
+export const Select = styled.select`
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    border-color: #b3b3b3ff;
+    color: #464545ff;
 `

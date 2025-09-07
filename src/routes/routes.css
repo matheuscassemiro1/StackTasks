@@ -5,8 +5,8 @@
     max-height: calc(100vh - 20px);
     margin: 10px;
     border-radius: 10px;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(252, 251, 251);
     box-sizing: border-box;
-    box-shadow: 1px 1px 5px black;
+    box-shadow: 1px 1px 4px rgb(119, 119, 119);
     overflow: hidden;
 }
