@@ -4,7 +4,8 @@
     width: 100%;
     max-width: 25vw;
     height: 100vh;
-    padding-right: 20px;
+    padding: 20px;
+    overflow: hidden;
 }
 
 .topicFilters {
@@ -27,6 +28,7 @@
 .topicFilters>span {
     margin-left: 10px;
     font-size: 0.8rem;
+    cursor: default;
     color: rgb(168, 168, 168);
 }
 
@@ -34,14 +36,27 @@
     font-size: 1.1rem;
     padding: 5px;
     color: rgb(68, 68, 68);
+    border-radius: 5px;
+}
+
+.option-selected {
+    color: rgb(62, 167, 253);
+    background-color: rgb(210, 234, 253);
+}
+
+.filter-selected {
+    color: rgb(65, 65, 65);
+    background-color: rgb(219, 219, 219);
 }
 
 .option:hover {
+    color: rgb(62, 167, 253);
     cursor: pointer;
-    background-color: rgb(173, 216, 252);
+    background-color: rgb(210, 234, 253);
+    border-radius: 5px;
 }
 
-.tag{
+.tag {
     cursor: pointer;
     background-color: rgb(212, 212, 212);
     padding-left: 8px;
@@ -50,4 +65,22 @@
     padding-top: 0;
     font-size: 0.8rem;
     vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .divFilters {
+        padding: 0px;
+    }
+
+    .topicFilters>div {
+        margin-left: 10px;
+    }
+
+    .topicFilters>span {
+        margin-left: 5px;
+    }
+
+    .option {
+        padding: 0px;
+    }
 }

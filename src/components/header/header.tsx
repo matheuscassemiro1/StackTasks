@@ -1,18 +1,27 @@
 import React from "react";
 import "./header.css"
-import { Button } from "../../styles/global";
+import { Input } from "../../styles/global";
 
 export const Header: React.FC = () => {
     return (
         <header className="topbar">
             <div className="div-logo flex1 justify-start" >
-                <span className="logotipo">StackTasks</span>
+                <span className="nomeAplicacao">StackTasks</span>
+                <span className="lista selecionado">Lista</span>
+                <span className="opt">+ Criar</span>
+                <span className="opt">⚙️</span>
             </div>
-            <div className="flex1 justify-center">
-                <span>Welcome, Fulano!</span>
-            </div>
+
             <div className="flex1 justify-end">
-                <Button className="" $small>Sair</Button>
+
+                <div className="div-perfil">
+                    <div className="div-search">
+                        <span>🔍</span>
+                        <Input className="input-busca" placeholder="Buscar tarefas, tags..." />
+                    </div>
+                    <span className="nome-perfil">Matheus</span>
+                    <span className="letra-perfil">M</span>
+                </div>
             </div>
         </header>
     )

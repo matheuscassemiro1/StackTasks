@@ -17,11 +17,11 @@ export const TaskFilter: React.FC<Tarefas> = ({ onSendData }: Tarefas) => {
                 <div className="topicFilters">
                     <span>PROJETOS</span>
                     <div>
-                        <div className="option" onClick={enviarDadosPai}>Cardboard</div>
+                        <div className="option option-selected" onClick={enviarDadosPai}>Cardboard</div>
                     </div>
                     <span>FILTROS</span>
                     <div>
-                        <span className="option">Todas</span>
+                        <span className="option filter-selected">Todas</span>
                         <span className="option">Pendente</span>
                     </div>
                     

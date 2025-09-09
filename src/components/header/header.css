@@ -1,11 +1,18 @@
 .topbar {
-    background-color: rgb(255, 180, 17);
+    background-color: rgb(252, 251, 251);
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
+    flex-wrap: wrap;
     border-radius: 10px 10px 0px 0px;
+    border-bottom: 1px solid gray;
+    padding: 0px 10px;
+}
+
+.input-busca {
+    border-radius: 10px;
 }
 
 .flex1 {
@@ -13,10 +20,11 @@
     display: flex;
 }
 
-.logotipo {
+.nomeAplicacao {
     padding: 10px;
     font-style: italic;
     font-weight: bolder;
+    font-size: 1.5rem;
 }
 
 .justify-start {
@@ -35,6 +43,76 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
-
     width: 100%;
+
+}
+
+.div-opcoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.lista,
+.opt {
+    color: rgb(87, 87, 87);
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.opt:hover {
+    color: rgb(62, 167, 253);
+    background-color: rgb(210, 234, 253);
+}
+
+.selecionado {
+    color: rgb(62, 167, 253);
+    background-color: rgb(210, 234, 253);
+}
+
+.div-perfil {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nome-perfil {
+    color: rgb(87, 87, 87);
+}
+
+.letra-perfil {
+    font-weight: bold;
+    background: linear-gradient(135deg, #4facfe, #a166ff);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 100%;
+}
+
+.div-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #e9e9e9ff;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+.div-search:first-child {
+    cursor: default;
+}
+
+.input-busca {
+    border-radius: 0px;
+}
+
+.input-busca:focus {
+    border: none;
+    outline: none;
 }

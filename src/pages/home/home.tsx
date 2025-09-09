@@ -54,7 +54,7 @@ export const Home: React.FC = () => {
                                 <Button $small>Excluir</Button>
                             </div>
                         </div>
-                                                <div className="box-tarefa">
+                        <div className="box-tarefa">
                             <input className="checkbox-tarefa" type="checkbox" checked />
                             <div className="detalhes-tarefa">
                                 <span className="titulo-descricao">Novo design para o site</span>
@@ -68,7 +68,7 @@ export const Home: React.FC = () => {
                                 <Button $small>Excluir</Button>
                             </div>
                         </div>
-                                                <div className="box-tarefa">
+                        <div className="box-tarefa">
                             <input className="checkbox-tarefa" type="checkbox" checked />
                             <div className="detalhes-tarefa">
                                 <span className="titulo-descricao">Novo design para o site</span>
@@ -82,7 +82,7 @@ export const Home: React.FC = () => {
                                 <Button $small>Excluir</Button>
                             </div>
                         </div>
-                                                <div className="box-tarefa">
+                        <div className="box-tarefa">
                             <input className="checkbox-tarefa" type="checkbox" checked />
                             <div className="detalhes-tarefa">
                                 <span className="titulo-descricao">Novo design para o site</span>
@@ -96,7 +96,7 @@ export const Home: React.FC = () => {
                                 <Button $small>Excluir</Button>
                             </div>
                         </div>
-                                                <div className="box-tarefa">
+                        <div className="box-tarefa">
                             <input className="checkbox-tarefa" type="checkbox" checked />
                             <div className="detalhes-tarefa">
                                 <span className="titulo-descricao">Novo design para o site</span>
@@ -110,7 +110,7 @@ export const Home: React.FC = () => {
                                 <Button $small>Excluir</Button>
                             </div>
                         </div>
-                                                <div className="box-tarefa">
+                        <div className="box-tarefa">
                             <input className="checkbox-tarefa" type="checkbox" checked />
                             <div className="detalhes-tarefa">
                                 <span className="titulo-descricao">Novo design para o site</span>
@@ -124,7 +124,7 @@ export const Home: React.FC = () => {
                                 <Button $small>Excluir</Button>
                             </div>
                         </div>
-                                                <div className="box-tarefa">
+                        <div className="box-tarefa">
                             <input className="checkbox-tarefa" type="checkbox" checked />
                             <div className="detalhes-tarefa">
                                 <span className="titulo-descricao">Novo design para o site</span>
@@ -138,7 +138,7 @@ export const Home: React.FC = () => {
                                 <Button $small>Excluir</Button>
                             </div>
                         </div>
-                                                <div className="box-tarefa">
+                        <div className="box-tarefa">
                             <input className="checkbox-tarefa" type="checkbox" checked />
                             <div className="detalhes-tarefa">
                                 <span className="titulo-descricao">Novo design para o site</span>
@@ -153,6 +153,7 @@ export const Home: React.FC = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </>
