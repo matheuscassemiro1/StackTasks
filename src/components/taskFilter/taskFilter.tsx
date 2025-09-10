@@ -21,8 +21,8 @@ export const TaskFilter: React.FC<Tarefas> = ({ onSendData }: Tarefas) => {
                     </div>
                     <span>FILTROS</span>
                     <div>
-                        <span className="option filter-selected">Todas</span>
-                        <span className="option">Pendente</span>
+                        <span className="filter filter-selected">Todas</span>
+                        <span className="filter">Pendente</span>
                     </div>
                     
                     <div>
