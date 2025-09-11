@@ -61,6 +61,10 @@
     height: 100px;
 }
 
+.done{
+    background: linear-gradient(180deg, #d9fce1, #c7fccc);
+}
+
 .detalhes-tarefa {
     margin-left: 5px;
     margin-top: 5px;

@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./taskFilter.css"
+import { Project } from "../../types/project";
 
-type Tarefas = {
-  onSendData: (dados: string) => void;
+type Projects = {
+    onSendData: (project: Project) => void;
 };
 
-export const TaskFilter: React.FC<Tarefas> = ({ onSendData }: Tarefas) => {
+export const TaskFilter: React.FC<Projects> = ({ onSendData }: Projects) => {
 
-    function enviarDadosPai(): void{
-        onSendData("teste");
+    const [project, setProject] = useState<Project[]>([
+        { id: 1, nome: "Pessoal", tasks: [{ id: 1, name: "Tarefa Básica", description: "Tarefa inicial", tags: ["teste"], done: false, order: 0 }, { id: 2, name: "Tarefa Básica OK", description: "Tarefa inicial", tags: ["testeDone"], done: true, order: 1 }] },
+        { id: 2, nome: "Projeto2", tasks: [{ id: 2, name: "Tarefa Básica p2", description: "Tarefa inicial p2", tags: ["teste2"], done: false, order: 0 }] }
+    ])
+
+    const [selectedProject, setSelected] = useState<String>('');
+    useEffect(() => {
+        selecionarProjeto(project[0]);
+    }, []);
+
+    function selecionarProjeto(proj: Project): void {
+        setSelected(proj.nome);
+        onSendData(proj);
+    }
+
+    function checkSelected(project: string): boolean {
+        return project === selectedProject;
     }
 
     return (
@@ -17,14 +33,17 @@ export const TaskFilter: React.FC<Tarefas> = ({ onSendData }: Tarefas) => {
                 <div className="topicFilters">
                     <span>PROJETOS</span>
                     <div>
-                        <div className="option option-selected" onClick={enviarDadosPai}>Cardboard</div>
+                        {project.map(p => {
+                            return <div className={`option ${checkSelected(p.nome) ? 'option-selected' : ''}`} onClick={() => {selecionarProjeto(p)}}>{p.nome}</div>
+                        })}
+
                     </div>
                     <span>FILTROS</span>
                     <div>
                         <span className="filter filter-selected">Todas</span>
                         <span className="filter">Pendente</span>
                     </div>
-                    
+
                     <div>
                     </div>
                     <span>ETIQUETAS</span>
@@ -35,7 +54,7 @@ export const TaskFilter: React.FC<Tarefas> = ({ onSendData }: Tarefas) => {
                     </div>
                 </div>
                 <hr />
-             
+
             </div>
 
         </>

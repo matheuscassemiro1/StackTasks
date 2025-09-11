@@ -3,12 +3,15 @@ import { Header } from "../../components/header/header";
 import { TaskFilter } from "../../components/taskFilter/taskFilter";
 import "./home.css"
 import { Button, Select } from "../../styles/global";
+import { Project } from "../../types/project";
+import { Task } from "../../types/task";
 
 export const Home: React.FC = () => {
-    const [mensagem, setMensagem] = useState('');
-    const receberDadosDoFilho = (dados: string) => {
-        console.log(dados)
-        setMensagem(dados);
+    const [tasks, setTasks] = useState<Task[] | undefined>()
+
+    const receberDadosDoFilho = (project: Project): void => {
+        setTasks(project.tasks)
+        console.log(project)
     };
     return (
         <>
@@ -26,6 +29,26 @@ export const Home: React.FC = () => {
                         </div>
                     </div>
                     <div className="div-tarefas">
+                        {tasks?.map(t => {
+                            return <>
+                                <div className={`box-tarefa ${t.done ? 'done' : ''}`}>
+                                    <input className="checkbox-tarefa" type="checkbox" checked={t.done}/>
+                                    <div className="detalhes-tarefa">
+                                        <span className="titulo-descricao">{t.name}</span>
+                                        <span className="descricao-tarefa">{t.description}</span>
+                                        <div className="div-flex">
+                                            {t.tags.map(tag => {
+                                                return <span className="tag">{tag}</span>
+                                            })}
+                                        </div>
+                                    </div>
+                                    <div className="div-botoes-edicao">
+                                        <Button $small>Editar</Button>
+                                        <Button $small>Excluir</Button>
+                                    </div>
+                                </div>
+                            </>
+                        })}
                         <div className="box-tarefa">
                             <input className="checkbox-tarefa" type="checkbox" />
                             <div className="detalhes-tarefa">
