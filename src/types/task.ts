@@ -4,5 +4,6 @@ export interface Task{
     description: string,
     tags: string[],
     done: boolean,
-    order: number
+    order: number,
+    limit: string
 }

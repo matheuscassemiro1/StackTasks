@@ -44,6 +44,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
     height: 100%;
     overflow-y: auto;
     padding-right: 1vw;
@@ -62,7 +63,7 @@
 }
 
 .done {
-    background: linear-gradient(180deg, #d9fce1, #c7fccc);
+    background: linear-gradient(180deg, #e7ffec, #e5fae6);
 }
 
 .detalhes-tarefa {
@@ -85,7 +86,11 @@
 
 .div-tags {
     display: flex;
+    height: inherit;
     flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
 }
 
 .checkbox-tarefa {
@@ -115,7 +120,6 @@
 
 .checkbox-tarefa:checked::after {
     content: "✔";
-    /*     color: gray; */
     color: green;
     font-size: 24px;
     position: absolute;
@@ -144,14 +148,35 @@
 
 .div-arrows {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .arrows {
     font-size: 0.5rem !important;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    padding: 1px 8px !important;
+    padding: 0px !important;
+    color: rgb(53, 53, 53) !important;
+    font-size: 1rem !important;
+    background: none !important;
+}
+
+.botao {
+    color: rgb(61, 61, 61) !important;
+    background: none !important;
+
+}
+
+.botao:hover {
+    color: rgb(0, 0, 0) !important;
+}
+
+.excluir {
+    color: rgb(255, 53, 53) !important;
+}
+
+.excluir:hover {
+    color: rgb(248, 0, 0) !important;
 }
 
 @media (max-width: 768px) {
@@ -184,6 +209,14 @@
         margin-top: 1%;
         margin-left: 3%;
         margin-right: 3%;
+    }
+
+    .div-arrows {
+        flex-direction: row;
+    }
+
+    .titulo-tarefas {
+        font-size: 1rem;
     }
 
 }
