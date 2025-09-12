@@ -34,7 +34,7 @@ export const TaskFilter: React.FC<Projects> = ({ onSendData }: Projects) => {
                     <span>PROJETOS</span>
                     <div>
                         {project.map(p => {
-                            return <div className={`option ${checkSelected(p.nome) ? 'option-selected' : ''}`} onClick={() => {selecionarProjeto(p)}}>{p.nome}</div>
+                            return <div key={`${p.id}`} className={`option ${checkSelected(p.nome) ? 'option-selected' : ''}`} onClick={() => {selecionarProjeto(p)}}>{p.nome}</div>
                         })}
 
                     </div>

@@ -61,7 +61,7 @@
     height: 100px;
 }
 
-.done{
+.done {
     background: linear-gradient(180deg, #d9fce1, #c7fccc);
 }
 
@@ -142,7 +142,22 @@
     color: rgb(131, 131, 131);
 }
 
+.div-arrows {
+    display: flex;
+    flex-direction: row;
+}
+
+.arrows {
+    font-size: 0.5rem !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding: 1px 8px !important;
+}
+
 @media (max-width: 768px) {
+    .box-tarefa {
+        height: 120px;
+    }
 
     .div-botoes-edicao {
         display: flex;

@@ -10,9 +10,51 @@ export const Home: React.FC = () => {
     const [tasks, setTasks] = useState<Task[] | undefined>()
 
     const receberDadosDoFilho = (project: Project): void => {
-        setTasks(project.tasks)
-        console.log(project)
+        setTasks(project.tasks);
+        console.log(project);
     };
+
+    function concluirTarefa(task: Task): void {
+        let tarefasAtualizadas = tasks?.map(t => t.id === task.id ? { ...t, done: !t.done } : t);
+        setTasks(tarefasAtualizadas);
+    }
+
+    function alterarPosicao(task: Task, direcao: string) {
+        let tasksAux = tasks;
+        tasksAux?.forEach(e => {
+            console.log(`TASK: ${e.name} ORDEM: ${e.order}`)
+        })
+        let posAnterior = task.order;
+        switch (direcao.toLowerCase()) {
+            case "acima":
+                tasksAux = tasksAux?.map(t => {
+                    if (t.id == task.id) {
+                        return { ...t, order: t.order - 1 <= 0 ? 0 : t.order - 1 }
+                    }
+                    if (t.order == posAnterior - 1 && t.id != task.id) {
+                        return { ...t, order: t.order + 1 }
+                    }
+                    return t;
+                })
+                setTasks(tasksAux);
+                break;
+            case "abaixo":
+                tasksAux = tasksAux?.map(t => {
+                    if (tasksAux![tasksAux!.length - 1].id != task.id) {
+                        if (t.id == task.id) {
+                            return { ...t, order: t.order + 1 }
+                        }
+                    }
+                    if (t.order == posAnterior + 1 && t.id != task.id) {
+                        return { ...t, order: t.order - 1 <= 0 ? 0 : t.order - 1 }
+                    }
+                    return t;
+                })
+                setTasks(tasksAux);
+                break;
+        }
+    }
+
     return (
         <>
             < Header />
@@ -29,152 +71,49 @@ export const Home: React.FC = () => {
                         </div>
                     </div>
                     <div className="div-tarefas">
-                        {tasks?.map(t => {
-                            return <>
-                                <div className={`box-tarefa ${t.done ? 'done' : ''}`}>
-                                    <input className="checkbox-tarefa" type="checkbox" checked={t.done}/>
+                        {tasks?.sort((a, b) => a.order - b.order).map(t => {
+                            return (
+                                <div className={`box-tarefa ${t.done ? 'done' : ''}`} key={t.id}>
+                                    <input readOnly
+                                        onClick={() => concluirTarefa(t)}
+                                        className="checkbox-tarefa"
+                                        type="checkbox"
+                                        checked={t.done}
+                                    />
                                     <div className="detalhes-tarefa">
                                         <span className="titulo-descricao">{t.name}</span>
                                         <span className="descricao-tarefa">{t.description}</span>
                                         <div className="div-flex">
-                                            {t.tags.map(tag => {
-                                                return <span className="tag">{tag}</span>
-                                            })}
+                                            {t.tags.map((tag, index) => (
+                                                <span className="tag" key={index}>{tag}</span>
+                                            ))}
                                         </div>
                                     </div>
                                     <div className="div-botoes-edicao">
+                                        <div className="div-arrows">
+                                            {t.order !== 0 && (
+                                                <Button
+                                                    $small
+                                                    className="arrows"
+                                                    onClick={() => alterarPosicao(t, 'acima')}
+                                                >
+                                                    ⮝
+                                                </Button>
+                                            )}
+                                            <Button
+                                                $small
+                                                className="arrows"
+                                                onClick={() => alterarPosicao(t, 'abaixo')}
+                                            >
+                                                ⮟
+                                            </Button>
+                                        </div>
                                         <Button $small>Editar</Button>
                                         <Button $small>Excluir</Button>
                                     </div>
                                 </div>
-                            </>
+                            );
                         })}
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Folhas para Impressora</span>
-                                <span className="descricao-tarefa">Colocar folhas A4 na impressora</span>
-                                <div className="div-flex">
-                                    <span className="tag">trabalho</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" checked />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Novo design para o site</span>
-                                <span className="descricao-tarefa">Refatorar a parte visual do site</span>
-                                <div className="div-flex">
-                                    <span className="tag">visual</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" checked />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Novo design para o site</span>
-                                <span className="descricao-tarefa">Refatorar a parte visual do site</span>
-                                <div className="div-flex">
-                                    <span className="tag">visual</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" checked />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Novo design para o site</span>
-                                <span className="descricao-tarefa">Refatorar a parte visual do site</span>
-                                <div className="div-flex">
-                                    <span className="tag">visual</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" checked />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Novo design para o site</span>
-                                <span className="descricao-tarefa">Refatorar a parte visual do site</span>
-                                <div className="div-flex">
-                                    <span className="tag">visual</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" checked />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Novo design para o site</span>
-                                <span className="descricao-tarefa">Refatorar a parte visual do site</span>
-                                <div className="div-flex">
-                                    <span className="tag">visual</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" checked />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Novo design para o site</span>
-                                <span className="descricao-tarefa">Refatorar a parte visual do site</span>
-                                <div className="div-flex">
-                                    <span className="tag">visual</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" checked />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Novo design para o site</span>
-                                <span className="descricao-tarefa">Refatorar a parte visual do site</span>
-                                <div className="div-flex">
-                                    <span className="tag">visual</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
-                        <div className="box-tarefa">
-                            <input className="checkbox-tarefa" type="checkbox" checked />
-                            <div className="detalhes-tarefa">
-                                <span className="titulo-descricao">Novo design para o site</span>
-                                <span className="descricao-tarefa">Refatorar a parte visual do site</span>
-                                <div className="div-flex">
-                                    <span className="tag">visual</span>
-                                </div>
-                            </div>
-                            <div className="div-botoes-edicao">
-                                <Button $small>Editar</Button>
-                                <Button $small>Excluir</Button>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
