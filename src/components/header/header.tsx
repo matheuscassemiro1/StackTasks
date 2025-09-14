@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
                 <div className="div-perfil">
                     <div className="div-search">
                         <span>🔍</span>
-                        <Input className="input-busca" placeholder="Buscar tarefas, tags..." />
+                        <Input $alternative className="input-busca" placeholder="Buscar tarefas, tags..." />
                     </div>
                     <span className="nome-perfil">Matheus</span>
                     <span className="letra-perfil">M</span>

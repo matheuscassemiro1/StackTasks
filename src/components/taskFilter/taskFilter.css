@@ -3,7 +3,7 @@
     border-right: 1px solid gray;
     width: 100%;
     max-width: 25vw;
-    height: 100vh;
+    height: 100%;
     padding: 20px;
     overflow: hidden;
 }
@@ -92,6 +92,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    flex-wrap: wrap;
     gap: 5px;
 }
 

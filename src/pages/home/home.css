@@ -3,13 +3,27 @@
     flex-direction: row;
     width: 100%;
     height: 100%;
-    /*     height: 100%; */
-    overflow: hidden;
+}
+
+.homepage {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+
+.newtask-box {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .div-projeto {
     width: 100%;
-    height: 80%;
+    height: 80vh;
     margin-top: 1%;
     margin-left: 3%;
     margin-right: 3%;
@@ -20,13 +34,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1%;
 }
 
 .titulo-tarefas {
     padding: 0;
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .titulo-ordenacao {
@@ -47,7 +60,6 @@
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    padding-right: 1vw;
     padding-bottom: 10vh;
 }
 
@@ -91,6 +103,24 @@
     justify-content: start;
     align-items: center;
     gap: 5px;
+}
+
+.btn-add-tarefa {
+    vertical-align: text-top;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: rgb(0, 174, 255);
+}
+
+.btn-add-tarefa:hover {
+    color: rgb(0, 174, 255);
+    text-shadow: 0px 0px 2px rgb(30, 135, 255);
+}
+
+.btn-add-tarefa:active {
+    transform: scale(1.4);
 }
 
 .checkbox-tarefa {
@@ -189,7 +219,11 @@
         flex-direction: column;
         margin-top: 2px;
         margin-right: 4px;
+    }
 
+    .div-botoes-edicao > Button{
+       padding: 0;
+       padding-bottom: 5px;
     }
 
     .detalhes-tarefa {

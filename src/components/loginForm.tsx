@@ -56,23 +56,31 @@ export const LoginForm: React.FC = () => {
                         if (erro.campo === "login") return <span id={`error ${erro}`} className="error-message">{erro.mensagem}</span>
                     })
                 }
-                <Input
-                    type="text"
-                    name="login"
-                    placeholder="Login"
-                    value={formLogin.login}
-                    onChange={handleChange}></Input>
+                <div className="input-case">
+                    <Input
+                        type="text"
+                        name="login"
+                        placeholder="Login"
+                        className="valid-input"
+                        value={formLogin.login}
+                        onChange={handleChange}></Input>
+                    <span className="valid-icon"></span>
+                </div>
                 {
                     errosForm.map(erro => {
                         if (erro.campo === "senha") return <span id={`error ${erro}`} className="error-message">{erro.mensagem}</span>
                     })
                 }
-                <Input
-                    type="password"
-                    name="senha"
-                    placeholder="********"
-                    value={formLogin.senha}
-                    onChange={handleChange} onBlur={validateLoginForm}></Input>
+                <div className="input-case">
+                    <Input
+                        type="password"
+                        name="senha"
+                        placeholder="********"
+                        className="valid-input"
+                        value={formLogin.senha}
+                        onChange={handleChange} onBlur={validateLoginForm}></Input>
+                    <span className="valid-icon"></span>
+                </div>
                 <Button disabled={!formIsValid} type="submit" $primary>Entrar</Button>
             </form>
         </>

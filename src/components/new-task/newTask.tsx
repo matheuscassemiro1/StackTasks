@@ -1,0 +1,152 @@
+import React, { useEffect, useState } from "react";
+import { Button, DefaultDiv, Input } from "../../styles/global";
+import "./newTask.css"
+import { Task } from "../../types/task";
+
+type PassState = {
+    opened: (state: boolean) => void;
+    taskCreated: (task: Partial<Task>) => void;
+}
+
+type ErrorFormTask = {
+    name: string,
+    message: string
+}
+
+export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
+    const [status, setStatus] = useState<boolean>(true);
+    const [formulario, setFormulario] = useState<Partial<Task>>({});
+    const [formErrors, setFormErrors] = useState<ErrorFormTask[]>();
+
+    useEffect(() => {
+        opened(status);
+    }, [status])
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+        const { name, value } = event.target;
+        let revisedValue: string | string[] = value;
+        if (name === 'tags') {
+            let aux = value.replace(/\s/g, '');
+            event.target.value = aux;
+            revisedValue = aux.split(',');
+        }
+
+        setFormulario((previous) => ({ ...previous, [name]: revisedValue }));
+
+        setFormErrors((prevErrors = []) => {
+            const filtered = prevErrors.filter((err) => err.name !== name);
+            if (name === 'name' && revisedValue.length < 3) {
+                filtered.push({ name: 'name', message: 'O nome precisa ter pelo menos 3 letras.' });
+            }
+            if (name === 'description' && revisedValue.length < 3) {
+                filtered.push({ name: 'description', message: 'A descrição precisa ter pelo menos 3 letras.' });
+            }
+            if (name === 'limit' && !revisedValue) {
+                filtered.push({ name: 'limit', message: 'É necessária a data de vencimento.' });
+            }
+            if (name === 'tags' && !revisedValue) {
+                filtered.push({ name: 'tags', message: 'Uma tag é obrigatória.' });
+            }
+            return filtered;
+        });
+    }
+
+    function validateForm(): boolean {
+        let errorsTemp: ErrorFormTask[] = [];
+        if (!formulario?.name || formulario.name.length < 3) {
+            errorsTemp.push({ name: "name", message: "O nome precisa ter pelo menos 3 letras." })
+        }
+        if (!formulario?.description || formulario!.description!.length < 3) {
+            errorsTemp.push({ name: "description", message: "A descrição precisa ter pelo menos 3 letras." })
+        }
+        if (!formulario?.limit || !formulario!.limit!) {
+            errorsTemp.push({ name: "limit", message: "É necessária a data de vencimento." })
+        }
+        if (!formulario?.tags) {
+            errorsTemp.push({ name: "tags", message: "Uma tag é obrigatória." })
+        }
+        setFormErrors(errorsTemp);
+        return errorsTemp.length <= 0;
+    }
+
+
+    function submitForm(e: React.FormEvent): void {
+        console.log(e)
+        e.preventDefault();
+        if (validateForm()) {
+            taskCreated(formulario);
+            setStatus(false);
+        } else {
+            console.log("invalid")
+        }
+    }
+
+    return (
+        <DefaultDiv>
+            <form className="form-container" onSubmit={submitForm}>
+                <div className="div-top">
+                    <h3 className="tab-name">Nova Tarefa</h3>
+                    <button className="close-button" onClick={() => { setStatus(false) }}>✖</button>
+                </div>
+
+                <div>
+                    <span>Titulo</span>
+                    <div className="input-case">
+                        <Input className={`${formErrors?.find(e => e.name == 'name') ? 'invalid-input' : ''} ${formulario.name && !formErrors?.find(f => f.name == "name") ? 'valid-input' : ''}`} onChange={handleChange} name="name" placeholder="Cuidar dos gatos..."></Input>
+                        <span className={`${formErrors?.find(e => e.name == 'name') ? 'invalid-icon' : ''} ${formulario.name && !formErrors?.find(f => f.name == "name") ? 'valid-icon' : ''}`}></span>
+                    </div>
+                    {formErrors?.map((erro) => {
+                        if (erro.name === 'name') {
+                            return <span key={erro.message} className="error-message">{erro.message}</span>
+                        }
+                    })}
+                </div>
+                <div>
+                    <span>Descrição</span>
+                    <div className="input-case">
+                        <Input className={`${formErrors?.find(e => e.name == 'description') ? 'invalid-input' : ''} ${formulario.description && !formErrors?.find(f => f.name == "description") ? 'valid-input' : ''}`} onChange={handleChange} name="description" placeholder="Limpar a caixa de areia e colocar água..."></Input>
+                        <span className={`${formErrors?.find(e => e.name == 'description') ? 'invalid-icon' : ''} ${formulario.description && !formErrors?.find(f => f.name == "description") ? 'valid-icon' : ''}`}></span>
+                    </div>
+                    {formErrors?.map((erro) => {
+                        if (erro.name === 'description') {
+                            return <span key={erro.message} className="error-message">{erro.message}</span>
+                        }
+                    })}
+                </div>
+                <div className="details">
+                    <div>
+                        <span>Vencimento</span>
+                        <div className="input-case">
+                            <Input className={`${formErrors?.find(e => e.name == 'limit') ? 'invalid-input' : ''} ${formulario.limit && !formErrors?.find(f => f.name == "limit") ? 'valid-input' : ''}`} onChange={handleChange} onInput={handleChange} name="limit" type="date" placeholder="Limpar a caixa de areia e colocar água..."></Input>
+                            <span className={`datepicker ${formErrors?.find(e => e.name == 'limit') ? 'invalid-icon' : ''} ${formulario.limit && !formErrors?.find(f => f.name == "limit") ? 'valid-icon' : ''}`}></span>
+                        </div>
+                        {formErrors?.map((erro) => {
+                            if (erro.name === 'limit') {
+                                return <span key={erro.message} className="error-message">{erro.message}</span>
+                            }
+                        })}
+                    </div>
+                    <div>
+                        <span>Etiquetas (virgula)</span>
+                        <div className="input-case">
+                            <Input className={`${formErrors?.find(e => e.name == 'tags') ? 'invalid-input' : ''} ${formulario.tags && !formErrors?.find(f => f.name == "tags") ? 'valid-input' : ''}`} onChange={handleChange} name="tags" placeholder="urgente,trabalho,comida"></Input>
+                            <span className={`${formErrors?.find(e => e.name == 'tags') ? 'invalid-icon' : ''} ${formulario.tags && !formErrors?.find(f => f.name == "tags") ? 'valid-icon' : ''}`}></span>
+                        </div>
+                        {formErrors?.map((erro) => {
+                            if (erro.name === 'tags') {
+                                return <span key={erro.message} className="error-message">{erro.message}</span>
+                            }
+                        })}
+                    </div>
+                </div>
+                <div className="div-botoes">
+                    <div className="grupo-botoes">
+                        <Button onClick={() => { setStatus(false) }}>Cancelar</Button>
+                        <Button $primary type='submit'>Salvar</Button>
+                    </div>
+                </div>
+
+            </form>
+        </DefaultDiv>
+    )
+}
