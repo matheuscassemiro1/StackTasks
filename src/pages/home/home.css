@@ -23,7 +23,7 @@
 
 .div-projeto {
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     margin-top: 1%;
     margin-left: 3%;
     margin-right: 3%;
@@ -72,10 +72,11 @@
     border-radius: 10px;
     box-shadow: 0px 1px 4px #b3b3b3ff;
     height: 100px;
+    transition: background 0.5s ease;
 }
 
 .done {
-    background: linear-gradient(180deg, #e7ffec, #e5fae6);
+    background-color: #e7ffec;
 }
 
 .detalhes-tarefa {
@@ -139,6 +140,7 @@
 }
 
 .checkbox-tarefa::after {
+    transition-duration: 0.2s;
     content: "●";
     color: rgba(11, 11, 11, 0.2);
     font-size: 30px;
@@ -221,9 +223,9 @@
         margin-right: 4px;
     }
 
-    .div-botoes-edicao > Button{
-       padding: 0;
-       padding-bottom: 5px;
+    .div-botoes-edicao>Button {
+        padding: 0;
+        padding-bottom: 5px;
     }
 
     .detalhes-tarefa {

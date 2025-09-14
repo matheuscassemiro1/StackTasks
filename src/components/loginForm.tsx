@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './loginForms.css'
 import { Button, Input } from "../styles/global";
-import { ErroForm } from "../types/erroForm";
+import { ErrorsForm } from "../types/errorsForm";
 
 export const LoginForm: React.FC = () => {
     type FormLogin = {
@@ -16,32 +16,38 @@ export const LoginForm: React.FC = () => {
         senha: undefined
     });
 
-    const [errosForm, setErro] = useState<ErroForm[]>([]);
-
-    function validateLoginForm(): boolean {
-        let errosTemp: ErroForm[] = []
-        if (!formLogin.login || formLogin.login.length < 4) {
-            errosTemp.push({ campo: "login", mensagem: "O login é inválido." });
-        }
-        if (!formLogin.senha || formLogin.senha.length < 6) {
-            errosTemp.push({ campo: "senha", mensagem: "A senha é inválida." });
-        }
-        setErro(errosTemp);
-        setValidity(errosTemp.length < 1);
-        return errosTemp.length < 1;
-    }
-
+    const [errorsForm, setErrors] = useState<ErrorsForm[]>([]);
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
         setForm((prevForm) => ({
             ...prevForm,
             [name]: value
         }));
+        let errorsTemp: ErrorsForm[] = errorsForm.filter(e => e.name !== name);
+        switch (name) {
+            case 'login':
+                if (!formLogin.login || value.length < 4) {
+                    errorsTemp.push({ name: "login", message: "O login é inválido. Insira ao menos 4 letras." });
+                }
+                break;
+            case 'senha':
+                if (!formLogin.senha || value.length < 6) {
+                    errorsTemp.push({ name: "senha", message: "A senha é inválida. Insira ao menos 6 caracteres." });
+                    break;
+                }
+        }
+        setErrors(errorsTemp);
+        if (formLogin.login && formLogin.senha && errorsTemp.length < 1) {
+            setValidity(errorsTemp.length < 1);
+        } else {
+            setValidity(false);
+        }
     };
 
     function handleSubmit(e: React.FormEvent): void {
         e.preventDefault();
-        if (validateLoginForm()) {
+        if (formIsValid) {
             console.log("form ok, submitted");
             console.log(formLogin);
         }
@@ -52,8 +58,8 @@ export const LoginForm: React.FC = () => {
             <h2>Log in</h2>
             <form className="formulario" onSubmit={handleSubmit}>
                 {
-                    errosForm.map(erro => {
-                        if (erro.campo === "login") return <span id={`error ${erro}`} className="error-message">{erro.mensagem}</span>
+                    errorsForm.map(error => {
+                        if (error.name === "login") return <span key={error.name} id={`error ${error}`} className="error-message">{error.message}</span>
                     })
                 }
                 <div className="input-case">
@@ -61,14 +67,13 @@ export const LoginForm: React.FC = () => {
                         type="text"
                         name="login"
                         placeholder="Login"
-                        className="valid-input"
-                        value={formLogin.login}
+                        className={`${errorsForm.find(e => e.name === 'login') ? 'invalid-input' : ''} ${formLogin.login && !errorsForm.find(e => e.name === 'login') ? 'valid-input' : ''}`}
                         onChange={handleChange}></Input>
-                    <span className="valid-icon"></span>
+                    <span className={`${errorsForm.find(e => e.name === 'login') ? 'invalid-icon' : ''} ${formLogin.login && !errorsForm.find(e => e.name === 'login') ? 'valid-icon' : ''}`}></span>
                 </div>
                 {
-                    errosForm.map(erro => {
-                        if (erro.campo === "senha") return <span id={`error ${erro}`} className="error-message">{erro.mensagem}</span>
+                    errorsForm.map(error => {
+                        if (error.name === "senha") return <span key={error.name} id={`error ${error}`} className="error-message">{error.message}</span>
                     })
                 }
                 <div className="input-case">
@@ -76,10 +81,9 @@ export const LoginForm: React.FC = () => {
                         type="password"
                         name="senha"
                         placeholder="********"
-                        className="valid-input"
-                        value={formLogin.senha}
-                        onChange={handleChange} onBlur={validateLoginForm}></Input>
-                    <span className="valid-icon"></span>
+                        className={`${errorsForm.find(e => e.name === 'senha') ? 'invalid-input' : ''} ${formLogin.senha && !errorsForm.find(e => e.name === 'senha') ? 'valid-input' : ''}`}
+                        onChange={handleChange}></Input>
+                    <span className={`${errorsForm.find(e => e.name === 'senha') ? 'invalid-icon' : ''} ${formLogin.senha && !errorsForm.find(e => e.name === 'senha') ? 'valid-icon' : ''}`}></span>
                 </div>
                 <Button disabled={!formIsValid} type="submit" $primary>Entrar</Button>
             </form>

@@ -2,21 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Button, DefaultDiv, Input } from "../../styles/global";
 import "./newTask.css"
 import { Task } from "../../types/task";
+import { ErrorsForm } from "../../types/errorsForm";
 
 type PassState = {
     opened: (state: boolean) => void;
     taskCreated: (task: Partial<Task>) => void;
 }
 
-type ErrorFormTask = {
-    name: string,
-    message: string
-}
-
 export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
     const [status, setStatus] = useState<boolean>(true);
     const [formulario, setFormulario] = useState<Partial<Task>>({});
-    const [formErrors, setFormErrors] = useState<ErrorFormTask[]>();
+    const [formErrors, setFormErrors] = useState<ErrorsForm[]>();
 
     useEffect(() => {
         opened(status);
@@ -52,7 +48,7 @@ export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
     }
 
     function validateForm(): boolean {
-        let errorsTemp: ErrorFormTask[] = [];
+        let errorsTemp: ErrorsForm[] = [];
         if (!formulario?.name || formulario.name.length < 3) {
             errorsTemp.push({ name: "name", message: "O nome precisa ter pelo menos 3 letras." })
         }
@@ -71,7 +67,6 @@ export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
 
 
     function submitForm(e: React.FormEvent): void {
-        console.log(e)
         e.preventDefault();
         if (validateForm()) {
             taskCreated(formulario);

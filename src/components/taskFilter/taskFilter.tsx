@@ -73,6 +73,11 @@ export const TaskFilter: React.FC<Projects> = ({ onSendData, updateProject, only
             setProject(auxProject);
         }
     }, [updateProject])
+    function deleteProject(proj: Project): void {
+        let auxProjects = project.filter(p => p.id !== proj.id);
+        setProject(auxProjects);
+        selecionarProjeto(auxProjects[0]);
+    }
 
     function selecionarProjeto(proj: Project): void {
         setSelected(proj.nome);
@@ -100,19 +105,25 @@ export const TaskFilter: React.FC<Projects> = ({ onSendData, updateProject, only
             <div className="divFilters">
                 <div className="topicFilters">
                     <span>PROJETOS</span>
-                    <div>
+                    <div className="topic-div">
                         {project.map(p => {
-                            return <div key={`${p.id}`} className={`option ${checkSelected(p.nome) ? 'option-selected' : ''}`} onClick={() => { selecionarProjeto(p) }}>{p.nome}</div>
+                            return (
+                                <div key={`${p.id}`}
+                                    className={`option ${checkSelected(p.nome) ? 'option-selected' : ''}`}
+                                    >
+                                        <span className="span-opt" onClick={() => { selecionarProjeto(p) }}>{p.nome}</span> 
+                                        {project.length > 1 ? <span className="delete-icon" onClick={() => deleteProject(p)} title="Excluir projeto">🗑️</span> : ''}
+                                        </div>
+                            )
                         })}
-
                     </div>
                     <span>FILTROS</span>
-                    <div>
+                    <div className="topic-div">
                         <span className={`filter ${!onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setFilter(false)}>Todas</span>
                         <span className={`filter ${onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setFilter(true)}>Pendente</span>
                     </div>
                     <span>ETIQUETAS</span>
-                    <div className="div-flex">
+                    <div className="topic-div">
                         <div className='div-tags'>
                             <span className={`tag ${!selectedTag ? 'tag-selected' : ''}`} onClick={() => { selectTag(undefined) }}>todas</span>
                             {activeProjectTags?.map(t => {
@@ -122,7 +133,6 @@ export const TaskFilter: React.FC<Projects> = ({ onSendData, updateProject, only
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

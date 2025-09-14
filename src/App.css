@@ -51,6 +51,11 @@ body {
   color: #61dafb;
 }
 
+.delete-icon{
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.4);
+}
+
 .input-case {
   display: flex;
   position: relative;
