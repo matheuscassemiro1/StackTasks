@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/* import React, { useEffect, useState } from "react";
 import { Header } from "../../components/header/header";
 import { TaskFilter } from "../../components/taskFilter/taskFilter";
 import "./home.css"
@@ -181,4 +181,8 @@ export const Home: React.FC = () => {
             </div>
         </>
     )
+} */
+
+export const home: React.FC = () => {
+    return <h1>teste</h1>
 }

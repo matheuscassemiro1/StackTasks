@@ -1,23 +1,11 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import "./taskFilter.css"
-import { Project } from "../../types/project";
+import { useEffect, useState } from "react";
+import { Project } from "../types/project";
+import { Task } from "../types/task";
+import { OrderBy } from "../types/orderTypes";
 
-type Projects = {
-    projects: Project[];
-    selectProject: (Project: Project) => void;
-    deleteProject: (Project: Project) => void;
-    activeTag: string | undefined;
-    setActiveTag: (tag: string | undefined) => void;
-    setOnlyActivesTasks: (done: boolean) => void;
-    selectedProject: Project;
-    activeProjectTags: string[] | undefined;
-    onlyActivesTasks: boolean;
-};
-
-export const TaskFilter: React.FC<Projects> = ({projects, activeProjectTags, activeTag, selectProject, deleteProject, selectedProject, onlyActivesTasks, setOnlyActivesTasks, setActiveTag }: Projects) => {
-    
-    /* const [project, setProject] = useState<Project[]>([
-        {
+export function useProject() {
+    const [projects, setProjects] = useState<Project[]>(
+        [{
             id: 1,
             nome: "Pessoal",
             tasks:
@@ -89,85 +77,137 @@ export const TaskFilter: React.FC<Projects> = ({projects, activeProjectTags, act
                 { id: 29, name: "Tarefa 29", description: "Descrição da tarefa 29", tags: ["exemplo", "teste"], done: false, order: 29, limit: "2025-10-12" },
                 { id: 30, name: "Tarefa 30", description: "Descrição da tarefa 30", tags: ["exemplo", "teste"], done: false, order: 30, limit: "2025-10-13" }
             ]
-        }
-    ])
-    const [onlyActivesTasks, setOnlyActivesTasks] = useState<boolean>(false);
-    const [selectedProject, setSelected] = useState<String>('');
+        }]
+    );
+    const [selectedProject, setSelectedProject] = useState<Project | undefined>();
+    const [orderBy, setOrderBy] = useState<OrderBy>(OrderBy.BYPOS);
+    const [onlyActives, setOnlyActives] = useState<boolean>(false);
     const [activeProjectTags, selectActiveProjectTags] = useState<string[] | undefined>();
+    const [activeTag, setActiveTag] = useState<string | undefined>();
     const [selectedTag, setSelectedTag] = useState<string | undefined>();
 
     useEffect(() => {
-        selecionarProjeto(project[0]);
-    }, []);
+        console.log("entrei no effect")
+        selectProject(projects[0])
+    }, [projects])
 
-    useEffect(() => {
-        if (updateProject) {
-            let auxProject = project.map(p => {
-                if (p.id === updateProject.id) {
-                    let tags = Array.from(new Set(p.tasks!.flatMap(task => task.tags)))
-                    selectActiveProjectTags(tags);
-                    return { ...p, tasks: updateProject.tasks }
-                }
-                return p;
-            })
-            setProject(auxProject);
-        }
-    }, [updateProject])
+
+/*     ENTENDER PQ O PROJETO NÃO ATUALIZA APÓS ALTERAR AS TASKS OU ESTADO DA TASK INTERNA
+    function updateProject() {
+        let auxProjects = projects.filter(p => p.id !== selectedProject!.id!)
+        auxProjects.push(selectedProject!)
+        setProjects(auxProjects)
+    } */
+
+    function completeTask(task: Task): void {
+        let tarefasAtualizadas = selectedProject!.tasks?.map(t => t.id === task.id ? { ...t, done: !t.done } : t);
+        setSelectedProject(p => ({ ...p!, tasks: tarefasAtualizadas }))
+    }
 
     function deleteProject(proj: Project): void {
-        let auxProjects = project.filter(p => p.id !== proj.id);
-        setProject(auxProjects);
-        selecionarProjeto(auxProjects[0]);
+        let auxProjects = projects.filter(p => p.id !== proj.id);
+        setProjects(auxProjects);
+        selectProject(auxProjects[0]);
+    }
+
+    function changeOrder(task: Task, direcao: string) {
+        let tasksAux = selectedProject!.tasks;
+        let posAnterior = task.order;
+        switch (direcao.toLowerCase()) {
+            case "acima":
+                tasksAux = tasksAux?.map(t => {
+                    if (t.id === task.id) {
+                        return { ...t, order: t.order - 1 <= 0 ? 0 : t.order - 1 }
+                    }
+                    if (t.order === posAnterior - 1 && t.id !== task.id) {
+                        return { ...t, order: t.order + 1 }
+                    }
+                    return t;
+                })
+                setSelectedProject(p => ({ ...p!, tasks: tasksAux }));
+                break;
+            case "abaixo":
+                tasksAux = tasksAux?.map(t => {
+                    if (tasksAux![tasksAux!.length - 1].id !== task.id) {
+                        if (t.id === task.id) {
+                            return { ...t, order: t.order + 1 }
+                        }
+                    }
+                    if (t.order === posAnterior + 1 && t.id !== task.id) {
+                        return { ...t, order: t.order - 1 <= 0 ? 0 : t.order - 1 }
+                    }
+                    return t;
+                })
+                setSelectedProject(p => ({ ...p!, tasks: tasksAux }));
+                break;
+
+        }
+        console.log("PROJETOS")
+        console.log(projects)
+        console.log("PROJ SELECIONADO")
+        console.log(selectedProject)
+    }
+
+    const deleteTask = (task: Task): void => {
+        let tasksTemp = selectedProject!.tasks!.filter(t => t.name !== task.name);
+        setSelectedProject((previous) => ({ ...previous!, tasks: tasksTemp }));
     }
 
 
-    function setFilter(done: boolean): void {
-        setOnlyActivesTasks(done);
-        onlyActives(done);
+    const orderTask = (a: Task, b: Task) => {
+        switch (orderBy) {
+            case OrderBy.BYPOS:
+                return a.order - b.order;
+            case OrderBy.BYDATE:
+                return new Date(a.limit).getTime() - new Date(b.limit).getTime();
+        }
     }
 
-    function selectTag(tag: string | undefined): void {
-        activeTag(tag);
-        setSelectedTag(tag);
-    } */
-   
-    function checkSelected(projectName?: string): boolean {
-        return projectName === selectedProject?.nome;
+    const filterTask = (task: Task): boolean => {
+        let onlyActivesTasksShowed = onlyActives ? !task.done : true;
+        let selectedTag = activeTag ? task.tags.includes(activeTag) : true;
+        return onlyActivesTasksShowed && selectedTag;
     }
 
-    return (
-        <>
-            <div className="divFilters">
-                <div className="topicFilters">
-                    <span>PROJETOS</span>
-                    <div className="topic-div">
-                        {projects.map(p => {
-                            return (
-                                <div key={`${p.id}`}
-                                    className={`option ${checkSelected(p.nome) ? 'option-selected' : ''}`}
-                                >
-                                    <span className="span-opt" onClick={() => { selectProject(p) }}>{p.nome}</span>
-                                    {projects.length > 1 ? <span className="delete-icon" onClick={() => deleteProject(p)} title="Excluir projeto">🗑️</span> : ''}
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <span>FILTROS</span>
-                    <div className="topic-div">
-                        <span className={`filter ${!onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setOnlyActivesTasks(false)}>Todas</span>
-                        <span className={`filter ${onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setOnlyActivesTasks(true)}>Pendente</span>
-                    </div>
-                    <span>ETIQUETAS</span>
-                    <div className="topic-div">
-                        <div className='div-tags'>
-                            <span className={`tag ${!activeTag ? 'tag-selected' : ''}`} onClick={() => { setActiveTag(undefined) }}>todas</span>
-                            {activeProjectTags?.map(t => {
-                                return <span key={t} className={`tag ${activeTag === t ? 'tag-selected' : ''}`} onClick={() => setActiveTag(t)}>{t}</span>
-                            })}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+    const taskCreated = (task: Partial<Task>): void => {
+        let lastId = selectedProject!.tasks!.reduce((ant, t) => { return t.id > ant.id ? t : ant }).id;
+        let maxOrder = selectedProject!.tasks!.reduce((ant, t) => { return t.order > ant.order ? t : ant }).order;
+        let newTask = task;
+        newTask.id = lastId + 1;
+        newTask.done = false;
+        newTask.order = maxOrder + 1;
+        let tempTasks = selectedProject!.tasks || [];
+        tempTasks.push(newTask as Task);
+        setSelectedProject((previous) => (({ ...previous!, tasks: tempTasks })));
+    }
+
+
+    function selectProject(proj: Project): void {
+        setSelectedProject(proj);
+        let tags = Array.from(new Set(proj!.tasks!.flatMap(task => task.tags)));
+        selectActiveProjectTags(tags);
+    }
+
+    return {
+        projects,
+        selectedProject,
+        setSelectedProject,
+        changeOrder,
+        orderBy,
+        onlyActives,
+        setOrderBy,
+        setOnlyActives,
+        setActiveTag,
+        completeTask,
+        taskCreated,
+        filterTask,
+        orderTask,
+        selectProject,
+        selectedTag,
+        setSelectedTag,
+        deleteProject,
+        activeProjectTags,
+        activeTag,
+        deleteTask
+    }
 }
