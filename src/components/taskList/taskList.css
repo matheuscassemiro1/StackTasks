@@ -1,0 +1,258 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.homepage {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+
+.newtask-box {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.div-projeto {
+    width: 100%;
+    height: 70vh;
+    margin-top: 1%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.box-titulo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-tarefas {
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.titulo-ordenacao {
+    color: gray;
+    padding-right: 10px;
+    cursor: default;
+}
+
+.select-ordenacao {
+    cursor: pointer;
+}
+
+.div-tarefas {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 10vh;
+}
+
+.box-tarefa {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    padding: 10px;
+    border: 1px solid #b3b3b3ff;
+    border-radius: 10px;
+    box-shadow: 0px 1px 4px #b3b3b3ff;
+    height: 100px;
+    transition: background 0.5s ease;
+}
+
+.done {
+    background-color: #e7ffec;
+}
+
+.detalhes-tarefa {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+}
+
+.div-botoes-edicao {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.div-tags {
+    display: flex;
+    height: inherit;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-add-tarefa {
+    vertical-align: text-top;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: rgb(0, 174, 255);
+}
+
+.btn-add-tarefa:hover {
+    color: rgb(0, 174, 255);
+    text-shadow: 0px 0px 2px rgb(30, 135, 255);
+}
+
+.btn-add-tarefa:active {
+    transform: scale(1.4);
+}
+
+.checkbox-tarefa {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px !important;
+    background: transparent;
+    border: 1px solid #b3b3b3ff;
+    position: relative;
+}
+
+.checkbox-tarefa::after {
+    transition-duration: 0.2s;
+    content: "●";
+    color: rgba(11, 11, 11, 0.2);
+    font-size: 30px;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+}
+
+
+.checkbox-tarefa:checked::after {
+    content: "✔";
+    color: green;
+    font-size: 24px;
+    position: absolute;
+    top: -4px;
+    left: 5px;
+}
+
+.tag {
+    background-color: rgb(212, 212, 212);
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+    padding-top: 0;
+    font-size: 0.8rem;
+    vertical-align: middle;
+}
+
+.titulo-descricao {
+    color: rgb(48, 48, 48);
+    font-weight: bolder;
+}
+
+.descricao-tarefa {
+    color: rgb(131, 131, 131);
+}
+
+.div-arrows {
+    display: flex;
+    flex-direction: column;
+}
+
+.arrows {
+    font-size: 0.5rem !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding: 0px !important;
+    color: rgb(53, 53, 53) !important;
+    font-size: 1rem !important;
+    background: none !important;
+}
+
+.botao {
+    color: rgb(61, 61, 61) !important;
+    background: none !important;
+
+}
+
+.botao:hover {
+    color: rgb(0, 0, 0) !important;
+}
+
+.excluir {
+    color: rgb(255, 53, 53) !important;
+}
+
+.excluir:hover {
+    color: rgb(248, 0, 0) !important;
+}
+
+@media (max-width: 768px) {
+    .box-tarefa {
+        height: 120px;
+    }
+
+    .div-botoes-edicao {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2px;
+        margin-right: 4px;
+    }
+
+    .div-botoes-edicao>Button {
+        padding: 0;
+        padding-bottom: 5px;
+    }
+
+    .detalhes-tarefa {
+        margin-left: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+        overflow: auto;
+    }
+
+    .div-projeto {
+        width: 100%;
+        height: 76%;
+        margin-top: 1%;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    .div-arrows {
+        flex-direction: row;
+    }
+
+    .titulo-tarefas {
+        font-size: 1rem;
+    }
+
+}
