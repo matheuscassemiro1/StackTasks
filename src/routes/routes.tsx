@@ -9,13 +9,13 @@ import { ProjectsContainer } from "../containers/ProjectsContainer";
 export const AppRoutes: React.FC = () => {
     return (
         <BrowserRouter>
-            <DefaultDiv>
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/home" element={<ProjectsContainer />} />
-{/*                     <Route path="/home-old" element={<Home />} /> */}
-                </Routes>
-            </DefaultDiv>
+                <DefaultDiv>
+                    <Routes>
+                        <Route path="/" element={<Login />} />
+                        <Route path="/home" element={<ProjectsContainer />} />
+                        {/*                     <Route path="/home-old" element={<Home />} /> */}
+                    </Routes>
+                </DefaultDiv>
         </BrowserRouter>
     );
 }

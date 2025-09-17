@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NewTask } from "../components/new-task/newTask";
-import { useProject } from "../hooks/useProject";
 import { Select } from "../styles/global";
 import { TaskFilter } from "../components/taskFilter/taskFilter";
 import { OrderBy } from "../types/orderTypes";
-import { Project } from "../types/project";
 import { TaskList } from "../components/taskList/taskList";
 import { Header } from "../components/header/header";
+import { useProjectContext } from "../contexts/ProjectProvider";
 
 export const ProjectsContainer: React.FC = () => {
     const {
@@ -26,17 +25,8 @@ export const ProjectsContainer: React.FC = () => {
         changeOrder,
         activeProjectTags,
         orderTask,
-        taskCreated } = useProject();
+        taskCreated } = useProjectContext();
     const [showNewTaskMenu, setNewTaskMenu] = useState<boolean>(false);
-
-    useEffect(() => {
-        console.log("start")
-        console.log(selectedProject)
-    })
-    const receberFiltros = (project: Project): void => {
-        /* setShowNewTask(false);
-        setProject(project); */
-    };
 
     return <>
         <Header></Header> {/* vai sair em breve, o pai deve chamar */}

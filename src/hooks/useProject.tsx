@@ -81,26 +81,34 @@ export function useProject() {
     );
     const [selectedProject, setSelectedProject] = useState<Project | undefined>();
     const [orderBy, setOrderBy] = useState<OrderBy>(OrderBy.BYPOS);
-    const [onlyActives, setOnlyActives] = useState<boolean>(false);
+    const [onlyActives, setOnlyActives] = useState<boolean>(true);
     const [activeProjectTags, selectActiveProjectTags] = useState<string[] | undefined>();
     const [activeTag, setActiveTag] = useState<string | undefined>();
     const [selectedTag, setSelectedTag] = useState<string | undefined>();
+    const [searchString, setSearchString] = useState<string>("");
 
     useEffect(() => {
-        console.log("entrei no effect")
         selectProject(projects[0])
     }, [projects])
 
-
-/*     ENTENDER PQ O PROJETO NÃO ATUALIZA APÓS ALTERAR AS TASKS OU ESTADO DA TASK INTERNA
-    function updateProject() {
-        let auxProjects = projects.filter(p => p.id !== selectedProject!.id!)
-        auxProjects.push(selectedProject!)
-        setProjects(auxProjects)
-    } */
+    function updateProject(tempProject: Project) {
+        setProjects((previous) => {
+            previous.map(p => {
+                if (p.id === tempProject.id!) {
+                    return { ...p, tasks: tempProject.tasks }
+                } else {
+                    return p;
+                }
+            })
+            return previous;
+        });
+    }
 
     function completeTask(task: Task): void {
         let tarefasAtualizadas = selectedProject!.tasks?.map(t => t.id === task.id ? { ...t, done: !t.done } : t);
+        let auxProjTemp = selectedProject;
+        auxProjTemp!.tasks = tarefasAtualizadas;
+        updateProject(auxProjTemp!);
         setSelectedProject(p => ({ ...p!, tasks: tarefasAtualizadas }))
     }
 
@@ -111,7 +119,8 @@ export function useProject() {
     }
 
     function changeOrder(task: Task, direcao: string) {
-        let tasksAux = selectedProject!.tasks;
+        let auxProj = selectedProject!
+        let tasksAux = auxProj.tasks;
         let posAnterior = task.order;
         switch (direcao.toLowerCase()) {
             case "acima":
@@ -124,6 +133,8 @@ export function useProject() {
                     }
                     return t;
                 })
+                auxProj.tasks = tasksAux;
+                updateProject(auxProj);
                 setSelectedProject(p => ({ ...p!, tasks: tasksAux }));
                 break;
             case "abaixo":
@@ -138,23 +149,22 @@ export function useProject() {
                     }
                     return t;
                 })
+                auxProj.tasks = tasksAux;
+                updateProject(auxProj);
                 setSelectedProject(p => ({ ...p!, tasks: tasksAux }));
                 break;
-
         }
-        console.log("PROJETOS")
-        console.log(projects)
-        console.log("PROJ SELECIONADO")
-        console.log(selectedProject)
     }
 
     const deleteTask = (task: Task): void => {
-        let tasksTemp = selectedProject!.tasks!.filter(t => t.name !== task.name);
+        let projectTemp = selectedProject!;
+        let tasksTemp = projectTemp.tasks!.filter(t => t.name !== task.name);
+        projectTemp.tasks = tasksTemp;
+        updateProject(projectTemp);
         setSelectedProject((previous) => ({ ...previous!, tasks: tasksTemp }));
     }
 
-
-    const orderTask = (a: Task, b: Task) => {
+    const orderTask = (a: Task, b: Task): number => {
         switch (orderBy) {
             case OrderBy.BYPOS:
                 return a.order - b.order;
@@ -164,9 +174,10 @@ export function useProject() {
     }
 
     const filterTask = (task: Task): boolean => {
-        let onlyActivesTasksShowed = onlyActives ? !task.done : true;
-        let selectedTag = activeTag ? task.tags.includes(activeTag) : true;
-        return onlyActivesTasksShowed && selectedTag;
+        let onlyActivesTasksShowed: boolean = onlyActives ? !task.done : true;
+        let selectedTag: boolean = activeTag ? task.tags.includes(activeTag) : true;
+        let stringSearch = task.name.toLowerCase().includes(searchString) || task.description.toLowerCase().includes(searchString) || task.tags.some(tag => tag.toLowerCase().includes(searchString)) || task.limit.includes(searchString)
+        return onlyActivesTasksShowed && selectedTag && stringSearch;
     }
 
     const taskCreated = (task: Partial<Task>): void => {
@@ -181,20 +192,23 @@ export function useProject() {
         setSelectedProject((previous) => (({ ...previous!, tasks: tempTasks })));
     }
 
-
     function selectProject(proj: Project): void {
         setSelectedProject(proj);
         let tags = Array.from(new Set(proj!.tasks!.flatMap(task => task.tags)));
+        setActiveTag(undefined);
         selectActiveProjectTags(tags);
     }
 
     return {
         projects,
         selectedProject,
-        setSelectedProject,
-        changeOrder,
         orderBy,
         onlyActives,
+        selectedTag,
+        activeProjectTags,
+        activeTag,
+        setSelectedProject,
+        changeOrder,
         setOrderBy,
         setOnlyActives,
         setActiveTag,
@@ -203,11 +217,10 @@ export function useProject() {
         filterTask,
         orderTask,
         selectProject,
-        selectedTag,
         setSelectedTag,
         deleteProject,
-        activeProjectTags,
-        activeTag,
+        setSearchString,
+        searchString,
         deleteTask
     }
 }

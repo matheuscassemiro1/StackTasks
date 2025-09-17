@@ -14,7 +14,7 @@ type TaskListData = {
     orderBy: OrderBy
 }
 
-export const TaskList: React.FC<TaskListData> = ({ tasks, orderTask, filterTask, completeTask, changeOrder, deleteTask, orderBy }): JSX.Element => {
+export const TaskList: React.FC<TaskListData> = ({ tasks, orderTask, filterTask, completeTask, changeOrder, deleteTask, orderBy}): JSX.Element => {
     return <>
         <div className="div-tarefas">
             {tasks?.sort(orderTask).filter(filterTask).map(t => {
