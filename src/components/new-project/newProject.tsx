@@ -69,7 +69,7 @@ export const NewProject: React.FC<PassState> = ({ opened }) => {
                         }
                     })}
                     <div className="buttons-div">
-                        <Button $smaller onClick={() => setStatusModal(false)}>Cancelar</Button>
+                        <Button $smaller onClick={() => setStatusModal(false)} type="button">Cancelar</Button>
                         <Button $smaller $primary type="submit">Criar</Button>
                     </div>
                 </div>

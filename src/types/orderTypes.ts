@@ -1,4 +1,5 @@
 export enum OrderBy {
     BYDATE = 'ByDate',
-    BYPOS = "ByPos"
+    BYPOS = "ByPos",
+    BYSTATE = "ByState"
 }

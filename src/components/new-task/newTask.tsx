@@ -87,8 +87,8 @@ export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
                 <div>
                     <span>Titulo</span>
                     <div className="input-case">
-                        <Input className={`${formErrors?.find(e => e.name == 'name') ? 'invalid-input' : ''} ${formulario.name && !formErrors?.find(f => f.name == "name") ? 'valid-input' : ''}`} onChange={handleChange} name="name" placeholder="Cuidar dos gatos..."></Input>
-                        <span className={`${formErrors?.find(e => e.name == 'name') ? 'invalid-icon' : ''} ${formulario.name && !formErrors?.find(f => f.name == "name") ? 'valid-icon' : ''}`}></span>
+                        <Input className={`${formErrors?.find(e => e.name === 'name') ? 'invalid-input' : ''} ${formulario.name && !formErrors?.find(f => f.name === "name") ? 'valid-input' : ''}`} onChange={handleChange} name="name" placeholder="Cuidar dos gatos..."></Input>
+                        <span className={`${formErrors?.find(e => e.name === 'name') ? 'invalid-icon' : ''} ${formulario.name && !formErrors?.find(f => f.name === "name") ? 'valid-icon' : ''}`}></span>
                     </div>
                     {formErrors?.map((erro) => {
                         if (erro.name === 'name') {
@@ -99,8 +99,8 @@ export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
                 <div>
                     <span>Descrição</span>
                     <div className="input-case">
-                        <Input className={`${formErrors?.find(e => e.name == 'description') ? 'invalid-input' : ''} ${formulario.description && !formErrors?.find(f => f.name == "description") ? 'valid-input' : ''}`} onChange={handleChange} name="description" placeholder="Limpar a caixa de areia e colocar água..."></Input>
-                        <span className={`${formErrors?.find(e => e.name == 'description') ? 'invalid-icon' : ''} ${formulario.description && !formErrors?.find(f => f.name == "description") ? 'valid-icon' : ''}`}></span>
+                        <Input className={`${formErrors?.find(e => e.name === 'description') ? 'invalid-input' : ''} ${formulario.description && !formErrors?.find(f => f.name === "description") ? 'valid-input' : ''}`} onChange={handleChange} name="description" placeholder="Limpar a caixa de areia e colocar água..."></Input>
+                        <span className={`${formErrors?.find(e => e.name === 'description') ? 'invalid-icon' : ''} ${formulario.description && !formErrors?.find(f => f.name === "description") ? 'valid-icon' : ''}`}></span>
                     </div>
                     {formErrors?.map((erro) => {
                         if (erro.name === 'description') {
@@ -112,8 +112,8 @@ export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
                     <div>
                         <span>Vencimento</span>
                         <div className="input-case">
-                            <Input className={`${formErrors?.find(e => e.name == 'limit') ? 'invalid-input' : ''} ${formulario.limit && !formErrors?.find(f => f.name == "limit") ? 'valid-input' : ''}`} onChange={handleChange} onInput={handleChange} name="limit" type="date" placeholder="Limpar a caixa de areia e colocar água..."></Input>
-                            <span className={`datepicker ${formErrors?.find(e => e.name == 'limit') ? 'invalid-icon' : ''} ${formulario.limit && !formErrors?.find(f => f.name == "limit") ? 'valid-icon' : ''}`}></span>
+                            <Input className={`${formErrors?.find(e => e.name === 'limit') ? 'invalid-input' : ''} ${formulario.limit && !formErrors?.find(f => f.name === "limit") ? 'valid-input' : ''}`} onChange={handleChange} onInput={handleChange} name="limit" type="date" placeholder="Limpar a caixa de areia e colocar água..."></Input>
+                            <span className={`datepicker ${formErrors?.find(e => e.name === 'limit') ? 'invalid-icon' : ''} ${formulario.limit && !formErrors?.find(f => f.name === "limit") ? 'valid-icon' : ''}`}></span>
                         </div>
                         {formErrors?.map((erro) => {
                             if (erro.name === 'limit') {
@@ -124,8 +124,8 @@ export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
                     <div>
                         <span>Etiquetas (virgula)</span>
                         <div className="input-case">
-                            <Input className={`${formErrors?.find(e => e.name == 'tags') ? 'invalid-input' : ''} ${formulario.tags && !formErrors?.find(f => f.name == "tags") ? 'valid-input' : ''}`} onChange={handleChange} name="tags" placeholder="urgente,trabalho,comida"></Input>
-                            <span className={`${formErrors?.find(e => e.name == 'tags') ? 'invalid-icon' : ''} ${formulario.tags && !formErrors?.find(f => f.name == "tags") ? 'valid-icon' : ''}`}></span>
+                            <Input className={`${formErrors?.find(e => e.name === 'tags') ? 'invalid-input' : ''} ${formulario.tags && !formErrors?.find(f => f.name === "tags") ? 'valid-input' : ''}`} onChange={handleChange} name="tags" placeholder="urgente,trabalho,comida"></Input>
+                            <span className={`${formErrors?.find(e => e.name === 'tags') ? 'invalid-icon' : ''} ${formulario.tags && !formErrors?.find(f => f.name === "tags") ? 'valid-icon' : ''}`}></span>
                         </div>
                         {formErrors?.map((erro) => {
                             if (erro.name === 'tags') {
@@ -136,8 +136,8 @@ export const NewTask: React.FC<PassState> = ({ opened, taskCreated }) => {
                 </div>
                 <div className="div-botoes">
                     <div className="grupo-botoes">
-                        <Button onClick={() => { setStatus(false) }}>Cancelar</Button>
-                        <Button $primary type='submit'>Salvar</Button>
+                        <Button onClick={() => { setStatus(false) }} type="button">Cancelar</Button>
+                        <Button $primary type="submit">Salvar</Button>
                     </div>
                 </div>
 

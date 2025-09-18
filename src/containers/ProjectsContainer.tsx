@@ -46,9 +46,10 @@ export const ProjectsContainer: React.FC = () => {
                     <h3 className="titulo-tarefas">Lista da Tarefas <button onClick={() => setNewTaskMenu(true)} className="btn-add-tarefa" title="Nova tarefa">✚</button></h3>
                     <div>
                         <span className="titulo-ordenacao">Ordenar por:</span>
-                        <Select className="select-ordenacao" name="ordenacao" id="ordenacao" onChange={(e) => setOrderBy(e.target.value as OrderBy)}>
-                            <option value={OrderBy.BYPOS}>Posição</option>
+                        <Select className="select-ordenacao" name="ordenacao" id="ordenacao" value={orderBy}  onChange={(e) => setOrderBy(e.target.value as OrderBy)}>
+                            <option value={OrderBy.BYPOS} disabled={!onlyActives}>Posição</option>
                             <option value={OrderBy.BYDATE}>Data de Vencimento</option>
+                            <option value={OrderBy.BYSTATE}>Estado da tarefa</option>
                         </Select>
                     </div>
                 </div>
