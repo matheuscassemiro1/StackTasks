@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-export const Button = styled.button < { $primary?: boolean; $small?: boolean }> `
+export const Button = styled.button < { $primary?: boolean; $small?: boolean; $smaller?: boolean }> `
     display: block;
     background: ${props => (props.$primary ? '#155DFC' : '#eeeeeeff')};
     color: ${props => (props.$primary ? '#ffffffff' : '#363636ff')};;
     font-size: ${props => (props.$small ? '0.9rem' : "1rem")};
-    padding: 10px;
+    font-size: ${props => (props.$smaller ? '0.8rem' : "1rem")};
+    padding: ${props => (props.$smaller ? "5px" : "10px")};
     border: none;
     border-radius: 8px;
     margin: 5px;

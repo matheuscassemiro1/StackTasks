@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./taskFilter.css"
 import { Project } from "../../types/project";
+import { NewProject } from "../new-project/newProject";
 
 type Projects = {
     projects: Project[];
@@ -24,6 +25,9 @@ export const TaskFilter: React.FC<Projects> = ({ projects,
     setOnlyActivesTasks,
     setActiveTag }: Projects) => {
 
+    const [showModalNewProj, setModalNewProj] = useState<boolean>(false);
+
+
     function checkSelected(projectName?: string): boolean {
         return projectName === selectedProject?.nome;
     }
@@ -32,7 +36,11 @@ export const TaskFilter: React.FC<Projects> = ({ projects,
         <>
             <div className="divFilters">
                 <div className="topicFilters">
-                    <span>PROJETOS</span>
+                    <div className="div-projects">
+                        <span className="project-title">PROJETOS</span>
+                        <button className="btn-add-tarefa" title="Novo projeto" onClick={() => setModalNewProj(true)}>✚</button>
+                        {showModalNewProj ? <NewProject opened={setModalNewProj}></NewProject> : ''}
+                    </div>
                     <div className="topic-div">
                         {projects.map(p => {
                             return (
@@ -45,12 +53,12 @@ export const TaskFilter: React.FC<Projects> = ({ projects,
                             )
                         })}
                     </div>
-                    <span>FILTROS</span>
+                    <span className="project-title">FILTROS</span>
                     <div className="topic-div">
                         <span className={`filter ${onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setOnlyActivesTasks(true)}>Pendente</span>
                         <span className={`filter ${!onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setOnlyActivesTasks(false)}>Todas</span>
                     </div>
-                    <span>ETIQUETAS</span>
+                    <span className="project-title">ETIQUETAS</span>
                     <div className="topic-div">
                         <div className='div-tags'>
                             <span className={`tag ${!activeTag ? 'tag-selected' : ''}`} onClick={() => { setActiveTag(undefined) }}>todas</span>

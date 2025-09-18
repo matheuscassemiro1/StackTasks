@@ -9,16 +9,20 @@
     overflow: hidden;
 }
 
-.dive{
-    display: flex;
-    flex-direction: column;
-}
-
 .topicFilters {
     margin-top: 5px;
     display: flex;
     height: 90vh;
     flex-direction: column;
+}
+
+.div-projects{
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .topic-div {
@@ -32,7 +36,7 @@
     overflow: auto;
 }
 
-.topicFilters>span {
+.project-title {
     margin-left: 10px;
     font-size: 0.8rem;
     cursor: default;

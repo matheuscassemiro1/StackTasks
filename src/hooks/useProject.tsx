@@ -91,6 +91,15 @@ export function useProject() {
         selectProject(projects[0])
     }, [projects])
 
+    function newProject(nome: string): void {
+        let newProject = {
+            id: projects.length + 1,
+            nome: nome,
+            tasks: []
+        } as Project;
+        setProjects((previous) => ([...previous, newProject]))
+    }
+
     function updateProject(tempProject: Project) {
         setProjects((previous) => {
             previous.map(p => {
@@ -102,6 +111,8 @@ export function useProject() {
             })
             return previous;
         });
+        let tags = Array.from(new Set(tempProject.tasks!.flatMap(task => task.tags)));
+        selectActiveProjectTags(tags);
     }
 
     function completeTask(task: Task): void {
@@ -181,14 +192,21 @@ export function useProject() {
     }
 
     const taskCreated = (task: Partial<Task>): void => {
-        let lastId = selectedProject!.tasks!.reduce((ant, t) => { return t.id > ant.id ? t : ant }).id;
-        let maxOrder = selectedProject!.tasks!.reduce((ant, t) => { return t.order > ant.order ? t : ant }).order;
+        let lastId = 0;
+        let maxOrder = 0;
+        if (selectedProject!.tasks!.length >= 1) {
+            lastId = selectedProject!.tasks!.reduce((ant, t) => { return t.id > ant.id ? t : ant }).id + 1;
+            maxOrder = selectedProject!.tasks!.reduce((ant, t) => { return t.order > ant.order ? t : ant }).order + 1;
+        }
         let newTask = task;
-        newTask.id = lastId + 1;
+        newTask.id = lastId;
         newTask.done = false;
-        newTask.order = maxOrder + 1;
+        newTask.order = maxOrder;
         let tempTasks = selectedProject!.tasks || [];
+        let auxProject = selectedProject!
         tempTasks.push(newTask as Task);
+        auxProject!.tasks = tempTasks;
+        updateProject(auxProject);
         setSelectedProject((previous) => (({ ...previous!, tasks: tempTasks })));
     }
 
@@ -221,6 +239,7 @@ export function useProject() {
         deleteProject,
         setSearchString,
         searchString,
+        newProject,
         deleteTask
     }
 }
