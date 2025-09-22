@@ -48,7 +48,7 @@ export const TaskList: React.FC<TaskListData> = ({ tasks, orderTask, filterTask,
                                             ⮝
                                         </Button>
                                     )}
-                                    {tasks.length > 1 && (
+                                    {tasks?.sort(orderTask).filter(filterTask).length > 1 && (
                                         <Button
                                             $small
                                             className="arrows"
