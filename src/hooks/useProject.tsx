@@ -86,9 +86,14 @@ export function useProject() {
     const [activeTag, setActiveTag] = useState<string | undefined>();
     const [selectedTag, setSelectedTag] = useState<string | undefined>();
     const [searchString, setSearchString] = useState<string>("");
+    const [tasksOrdersChanged, setTasksOrdersChanged] = useState<boolean>(false);
+    const [reviseTaskChangesMode, setReviseTaskChangesMode] = useState<boolean>(false);
+    const [originalSelected, setOriginalSelected] = useState<Project>();
 
     useEffect(() => {
-        selectProject(projects[0])
+        if(!selectedProject){
+             selectProject(projects[0])
+        }
     }, [projects])
 
     useEffect(() => {
@@ -109,16 +114,13 @@ export function useProject() {
     }
 
     function updateProject(tempProject: Project) {
-        setProjects((previous) => {
-            previous.map(p => {
-                if (p.id === tempProject.id!) {
-                    return { ...p, tasks: tempProject.tasks }
-                } else {
-                    return p;
-                }
-            })
-            return previous;
-        });
+        setProjects(previous =>
+            previous.map(p =>
+                p.id === tempProject.id
+                    ? { ...p, tasks: tempProject.tasks }
+                    : p
+            )
+        );
         let tags = Array.from(new Set(tempProject.tasks!.flatMap(task => task.tags)));
         selectActiveProjectTags(tags);
     }
@@ -150,7 +152,7 @@ export function useProject() {
     }
 
     function changeOrder(task: Task, direcao: string) {
-        let auxProj = selectedProject!
+        let auxProj = { ...selectedProject! }
         let tasksAux = auxProj.tasks;
         let posAnterior = task.order;
         switch (direcao.toLowerCase()) {
@@ -165,7 +167,6 @@ export function useProject() {
                     return t;
                 })
                 auxProj.tasks = tasksAux;
-                updateProject(auxProj);
                 setSelectedProject(p => ({ ...p!, tasks: tasksAux }));
                 break;
             case "abaixo":
@@ -181,9 +182,12 @@ export function useProject() {
                     return t;
                 })
                 auxProj.tasks = tasksAux;
-                updateProject(auxProj);
                 setSelectedProject(p => ({ ...p!, tasks: tasksAux }));
                 break;
+        }
+
+        if (JSON.stringify(projects.find(p => p.id === auxProj.id)?.tasks) !== JSON.stringify(auxProj.tasks)) {
+            setTasksOrdersChanged(true);
         }
     }
 
@@ -243,6 +247,16 @@ export function useProject() {
         let tags = Array.from(new Set(proj!.tasks!.flatMap(task => task.tags)));
         setActiveTag(undefined);
         selectActiveProjectTags(tags);
+        setReviseTaskChangesMode(false);
+        setTasksOrdersChanged(false);
+        setOriginalSelected(proj);
+    }
+
+    function finishTaskChanges(action: string, project?: Project): void {
+        if (action === 'revert') setSelectedProject(projects.find(p => p.id === selectedProject!.id))
+        if (action === 'save') updateProject(project!)
+        setReviseTaskChangesMode(false);
+        setTasksOrdersChanged(false);
     }
 
     return {
@@ -268,6 +282,11 @@ export function useProject() {
         setSearchString,
         searchString,
         newProject,
-        deleteTask
+        deleteTask,
+        tasksOrdersChanged,
+        reviseTaskChangesMode,
+        setReviseTaskChangesMode,
+        finishTaskChanges,
+        originalSelected
     }
 }
