@@ -29,7 +29,7 @@ export const TaskList: React.FC<TaskListData> = ({ tasks, orderTask, filterTask,
                             checked={t.done}
                         /> : ''}
                         <div className="detalhes-tarefa">
-                            <span className="titulo-descricao">{t.name} - {t.order}</span>
+                            <span className="titulo-descricao">{t.name}</span>
                             <span className="descricao-tarefa">{t.description}</span>
                             <div className="div-tags">
                                 <span className="tag">{t.limit}</span>
