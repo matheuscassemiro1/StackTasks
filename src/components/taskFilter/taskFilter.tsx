@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./taskFilter.css"
-import { Project } from "../../types/project";
+import { Project } from "../../types/project-types";
 import { NewProject } from "../new-project/newProject";
 
 type Projects = {
