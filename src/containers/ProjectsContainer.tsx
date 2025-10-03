@@ -34,7 +34,6 @@ export const ProjectsContainer: React.FC = () => {
         originalSelected
     } = useProjectContext();
     const [showNewTaskMenu, setNewTaskMenu] = useState<boolean>(false);
-
     return <>
         <Header></Header> {/* vai sair em breve, o pai deve chamar */}
         <div className="content">

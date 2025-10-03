@@ -51,7 +51,7 @@ body {
   color: #61dafb;
 }
 
-.delete-icon{
+.delete-icon {
   font-size: 0.8rem;
   color: rgba(0, 0, 0, 0.4);
 }
@@ -90,11 +90,11 @@ body {
   content: "✔";
 }
 
-.error-message{
-    color: rgb(255, 47, 47);
-    font-size: 0.8rem;
-    margin: 0px;
-    padding: 0px;
+.error-message {
+  color: rgb(255, 47, 47);
+  font-size: 0.8rem;
+  margin: 0px;
+  padding: 0px;
 }
 
 .invalid-icon {
@@ -110,6 +110,11 @@ body {
 
 .invalid-icon::after {
   content: '!'
+}
+
+.dark {
+  background-color: #3a3e47 !important;
+  color: white !important;
 }
 
 @keyframes App-logo-spin {
