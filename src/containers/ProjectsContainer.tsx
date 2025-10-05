@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TaskDetail } from "../components/new-task/taskDetail";
+import { TaskDetail } from "../components/task-detail/taskDetail";
 import { Button, Select } from "../styles/global";
 import { TaskFilter } from "../components/taskFilter/taskFilter";
 import { OrderBy } from "../types/orderTypes";
