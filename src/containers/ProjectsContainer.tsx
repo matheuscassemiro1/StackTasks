@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NewTask } from "../components/new-task/newTask";
+import { TaskDetail } from "../components/new-task/taskDetail";
 import { Button, Select } from "../styles/global";
 import { TaskFilter } from "../components/taskFilter/taskFilter";
 import { OrderBy } from "../types/orderTypes";
@@ -7,6 +7,7 @@ import { TaskList } from "../components/taskList/taskList";
 import { Header } from "../components/header/header";
 import { useProjectContext } from "../contexts/ProjectProvider";
 import "./ProjectsContainer.css"
+import { Task } from "../types/task";
 
 export const ProjectsContainer: React.FC = () => {
     const {
@@ -31,9 +32,12 @@ export const ProjectsContainer: React.FC = () => {
         reviseTaskChangesMode,
         setReviseTaskChangesMode,
         finishTaskChanges,
-        originalSelected
+        originalSelected,
+        taskEdit
     } = useProjectContext();
     const [showNewTaskMenu, setNewTaskMenu] = useState<boolean>(false);
+    const [editTask, setEditTask] = useState<Task | undefined>();
+
     return <>
         <Header></Header> {/* vai sair em breve, o pai deve chamar */}
         <div className="content">
@@ -68,8 +72,8 @@ export const ProjectsContainer: React.FC = () => {
                     </> : ''}
                 </div>
                 {showNewTaskMenu ?
-                    <div className="newtask-box">
-                        <NewTask opened={setNewTaskMenu} taskCreated={taskCreated}></NewTask>
+                    <div className="task-detail-box">
+                        <TaskDetail opened={setNewTaskMenu} taskCreated={taskCreated} editTask={editTask} finishTaskEdit={taskEdit} setEditTask={setEditTask}></TaskDetail>
                     </div>
                     :
                     <div className="div-preview-tasklist">
@@ -83,6 +87,7 @@ export const ProjectsContainer: React.FC = () => {
                                 filterTask={filterTask}
                                 orderBy={orderBy}
                                 orderTask={orderTask}
+                                openTaskMenu={setNewTaskMenu}
                                 reviseTaskChangesMode={reviseTaskChangesMode}
                             ></TaskList>
                         </div> : ""}
@@ -97,6 +102,8 @@ export const ProjectsContainer: React.FC = () => {
                                 orderBy={orderBy}
                                 orderTask={orderTask}
                                 reviseTaskChangesMode={reviseTaskChangesMode}
+                                setEditTask={setEditTask}
+                                openTaskMenu={setNewTaskMenu}
                             ></TaskList>
                         </div>
                     </div>

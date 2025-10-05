@@ -98,7 +98,7 @@ export function useProject() {
     const [originalSelected, setOriginalSelected] = useState<Project>();
 
     useEffect(() => {
-        if (projects.length == 0) {
+        if (projects.length === 0) {
             setProjects(projectList[0].projects);
             setSelectedList(projectList[0]);
         }
@@ -193,6 +193,7 @@ export function useProject() {
             }
         })
         updateProject(auxProjTemp!);
+        setOriginalSelected(auxProjTemp!)
         setSelectedProject(p => ({ ...p!, tasks: tarefasAtualizadas }))
     }
 
@@ -253,6 +254,7 @@ export function useProject() {
         })
         projectTemp.tasks = tasksTemp;
         updateProject(projectTemp);
+        setOriginalSelected(projectTemp)
         setSelectedProject((previous) => ({ ...previous!, tasks: tasksTemp }));
     }
 
@@ -279,7 +281,7 @@ export function useProject() {
         let maxOrder = 0;
         if (selectedProject!.tasks!.length >= 1) {
             lastId = selectedProject!.tasks!.reduce((ant, t) => { return t.id > ant.id ? t : ant }).id + 1;
-            maxOrder = selectedProject!.tasks!.reduce((ant, t) => { return t.order > ant.order ? t : ant }).order + 1;
+            maxOrder = selectedProject!.tasks!.reduce((ant, t) => { return t.order > ant.order && !t.done ? t : ant }).order + 1;
         }
         let newTask = task;
         newTask.id = lastId;
@@ -288,6 +290,21 @@ export function useProject() {
         let tempTasks = selectedProject!.tasks || [];
         let auxProject = selectedProject!
         tempTasks.push(newTask as Task);
+        auxProject!.tasks = tempTasks;
+        updateProject(auxProject);
+        setSelectedProject((previous) => (({ ...previous!, tasks: tempTasks })));
+    }
+
+    const taskEdit = (task: Task): void => {
+        let tempTasks = selectedProject!.tasks!.map(t => {
+            if (t.id === task.id) {
+                return task
+            } else {
+                return t;
+            }
+        });
+        console.log(tempTasks)
+        let auxProject = selectedProject!
         auxProject!.tasks = tempTasks;
         updateProject(auxProject);
         setSelectedProject((previous) => (({ ...previous!, tasks: tempTasks })));
@@ -342,6 +359,7 @@ export function useProject() {
         selectedList,
         newListProject,
         selectList,
-        originalSelected
+        originalSelected,
+        taskEdit
     }
 }

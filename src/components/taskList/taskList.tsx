@@ -12,11 +12,12 @@ type TaskListData = {
     changeOrder: (task: Task, direcao: string) => void,
     deleteTask: (task: Task) => void,
     orderBy: OrderBy,
-    reviseTaskChangesMode: boolean
-
+    reviseTaskChangesMode: boolean,
+    openTaskMenu: (show: boolean) => void,
+    setEditTask?: (task: Task) => void
 }
 
-export const TaskList: React.FC<TaskListData> = ({ tasks, orderTask, filterTask, completeTask, changeOrder, deleteTask, orderBy, reviseTaskChangesMode }): JSX.Element => {
+export const TaskList: React.FC<TaskListData> = ({ tasks, openTaskMenu, setEditTask, orderTask, filterTask, completeTask, changeOrder, deleteTask, orderBy, reviseTaskChangesMode }): JSX.Element => {
     return <>
         <div className="div-tarefas">
             {tasks?.sort(orderTask).filter(filterTask).map(t => {
@@ -50,7 +51,9 @@ export const TaskList: React.FC<TaskListData> = ({ tasks, orderTask, filterTask,
                                             ⮝
                                         </Button>
                                     )}
-                                    {tasks?.sort(orderTask).filter(filterTask).length > 1 && (
+                                    {
+                                    tasks?.sort(orderTask).filter(filterTask).length > 1 && 
+                                    tasks?.sort(orderTask).filter(filterTask).findIndex(task => task.id === t.id) !== tasks?.sort(orderTask).filter(filterTask).length -1 && (
                                         <Button
                                             $small
                                             className="arrows"
@@ -62,7 +65,10 @@ export const TaskList: React.FC<TaskListData> = ({ tasks, orderTask, filterTask,
                                 </div>
                             )}
                             {!reviseTaskChangesMode ? <>
-                                <Button $small className="botao">Editar</Button>
+                                <Button $small className="botao" onClick={() => {
+                                    openTaskMenu(true)
+                                    setEditTask!(t)
+                                }}>Editar</Button>
                                 <Button $small className="botao excluir" onClick={() => { deleteTask(t) }}>Excluir</Button>
                             </> : ''}
 
