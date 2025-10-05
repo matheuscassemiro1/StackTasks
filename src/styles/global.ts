@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
-export const Button = styled.button < { $primary?: boolean; $small?: boolean; $smaller?: boolean }> `
+export const Button = styled.button < { $primary?: boolean; $small?: boolean; $smaller?: boolean, $darkMode?: boolean }> `
     display: block;
     background: ${props => (props.$primary ? '#155DFC' : '#eeeeeeff')};
-    color: ${props => (props.$primary ? '#ffffffff' : '#363636ff')};;
+    color: ${props => (props.$primary ? '#ffffffff' : '#363636ff')};
     font-size: ${props => (props.$small ? '0.9rem' : "1rem")};
     font-size: ${props => (props.$smaller ? '0.8rem' : "1rem")};
     padding: ${props => (props.$smaller ? "5px" : "10px")};
     border: none;
     border-radius: 8px;
     margin: 5px;
-
+    color: ${props => (props.$darkMode ? '#e6e6e6ff !important' : '')};
+    
     &:hover{
         cursor: pointer;
         background: ${props => (props.$primary ? '#034cebff' : '#d1d1d1ff')};
@@ -45,13 +46,13 @@ export const Select = styled.select`
     color: #464545ff;
 `
 
-export const DefaultDiv = styled.div`
+export const DefaultDiv = styled.div<{ $dark?: boolean }>`
     width: 100%;
     height: 100%;
     max-width: calc(100% - 20px);
     max-height: calc(100% - 20px);
     border-radius: 10px;
-    background-color: rgb(252, 251, 251);
+    background-color: ${props => props.$dark ? '#3a3e47' : 'rgb(252, 251, 251)'};
     box-sizing: border-box;
     box-shadow: 1px 1px 4px rgb(119, 119, 119);
     overflow: hidden;

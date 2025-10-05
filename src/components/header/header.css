@@ -75,6 +75,10 @@
     border-radius: 5px;
 }
 
+.opt-dark{
+    color: white;
+}
+
 .opt:hover {
     color: rgb(62, 167, 253);
     background-color: rgb(210, 234, 253);
@@ -103,10 +107,9 @@
     background-color: rgb(230, 230, 230);
     width: 120px;
     cursor: default;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
     background-color: rgba(252, 251, 251, 1);
     border: 1px solid #b3b3b3ff;
-    border-top: 0px;
     z-index: 9999;
     display: flex;
     flex-direction: column;

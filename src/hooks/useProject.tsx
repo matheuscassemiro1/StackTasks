@@ -303,7 +303,6 @@ export function useProject() {
                 return t;
             }
         });
-        console.log(tempTasks)
         let auxProject = selectedProject!
         auxProject!.tasks = tempTasks;
         updateProject(auxProject);

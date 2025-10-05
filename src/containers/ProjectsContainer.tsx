@@ -8,6 +8,7 @@ import { Header } from "../components/header/header";
 import { useProjectContext } from "../contexts/ProjectProvider";
 import "./ProjectsContainer.css"
 import { Task } from "../types/task";
+import { useThemeContext } from "../contexts/UseTheme";
 
 export const ProjectsContainer: React.FC = () => {
     const {
@@ -37,6 +38,7 @@ export const ProjectsContainer: React.FC = () => {
     } = useProjectContext();
     const [showNewTaskMenu, setNewTaskMenu] = useState<boolean>(false);
     const [editTask, setEditTask] = useState<Task | undefined>();
+    const { darkMode } = useThemeContext();
 
     return <>
         <Header></Header> {/* vai sair em breve, o pai deve chamar */}
@@ -53,7 +55,7 @@ export const ProjectsContainer: React.FC = () => {
                 deleteProject={deleteProject} />
             <div className="div-projeto">
                 <div className="box-titulo">
-                    <h3 className="titulo-tarefas">Lista da Tarefas <button disabled={reviseTaskChangesMode || !selectedProject} onClick={() => setNewTaskMenu(true)} className="btn-add-tarefa" title="Nova tarefa">✚</button></h3>
+                    <h3 className={`titulo-tarefas ${darkMode ? 'dark' : ''}`}>Lista da Tarefas <button disabled={reviseTaskChangesMode || !selectedProject} onClick={() => setNewTaskMenu(true)} className="btn-add-tarefa" title="Nova tarefa">✚</button></h3>
                     <div>
                         <span className="titulo-ordenacao">Ordenar por:</span>
                         <Select className="select-ordenacao" name="ordenacao" id="ordenacao" value={orderBy} onChange={(e) => setOrderBy(e.target.value as OrderBy)}>

@@ -3,6 +3,7 @@ import { Task } from "../../types/task";
 import { Button } from "../../styles/global";
 import { OrderBy } from "../../types/orderTypes";
 import "./taskList.css"
+import { useThemeContext } from "../../contexts/UseTheme";
 
 type TaskListData = {
     tasks?: Task[] | undefined,
@@ -18,6 +19,7 @@ type TaskListData = {
 }
 
 export const TaskList: React.FC<TaskListData> = ({ tasks, openTaskMenu, setEditTask, orderTask, filterTask, completeTask, changeOrder, deleteTask, orderBy, reviseTaskChangesMode }): JSX.Element => {
+    const { darkMode } = useThemeContext();
     return <>
         <div className="div-tarefas">
             {tasks?.sort(orderTask).filter(filterTask).map(t => {
@@ -30,8 +32,8 @@ export const TaskList: React.FC<TaskListData> = ({ tasks, openTaskMenu, setEditT
                             checked={t.done}
                         /> : ''}
                         <div className="detalhes-tarefa">
-                            <span className="titulo-descricao">{t.name}</span>
-                            <span className="descricao-tarefa">{t.description}</span>
+                            <span className={`titulo-descricao ${darkMode && !t.done ? 'dark-text' : ''}`}>{t.name}</span>
+                            <span className={`descricao-tarefa ${darkMode && !t.done ? 'dark-text' : ''}`}>{t.description}</span>
                             <div className="div-tags">
                                 <span className="tag">{t.limit}</span>
                                 {t.tags.map((tag, index) => (
@@ -52,20 +54,20 @@ export const TaskList: React.FC<TaskListData> = ({ tasks, openTaskMenu, setEditT
                                         </Button>
                                     )}
                                     {
-                                    tasks?.sort(orderTask).filter(filterTask).length > 1 && 
-                                    tasks?.sort(orderTask).filter(filterTask).findIndex(task => task.id === t.id) !== tasks?.sort(orderTask).filter(filterTask).length -1 && (
-                                        <Button
-                                            $small
-                                            className="arrows"
-                                            onClick={() => changeOrder(t, 'abaixo')}
-                                        >
-                                            ⮟
-                                        </Button>
-                                    )}
+                                        tasks?.sort(orderTask).filter(filterTask).length > 1 &&
+                                        tasks?.sort(orderTask).filter(filterTask).findIndex(task => task.id === t.id) !== tasks?.sort(orderTask).filter(filterTask).length - 1 && (
+                                            <Button
+                                                $small
+                                                className="arrows"
+                                                onClick={() => changeOrder(t, 'abaixo')}
+                                            >
+                                                ⮟
+                                            </Button>
+                                        )}
                                 </div>
                             )}
                             {!reviseTaskChangesMode ? <>
-                                <Button $small className="botao" onClick={() => {
+                                <Button $small $darkMode={darkMode} className={`${darkMode ? 'botao-dark' : 'botao'}`} onClick={() => {
                                     openTaskMenu(true)
                                     setEditTask!(t)
                                 }}>Editar</Button>

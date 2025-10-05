@@ -3,6 +3,7 @@ import { Button, Input } from "../../styles/global";
 import "./newProjectList.css";
 import { ErrorsForm } from "../../types/errorsForm";
 import { useProjectContext } from "../../contexts/ProjectProvider";
+import { useThemeContext } from "../../contexts/UseTheme";
 
 
 type PassState = {
@@ -13,6 +14,7 @@ export const NewProjectList: React.FC<PassState> = ({ opened }) => {
     const [formErrors, setFormErrors] = useState<ErrorsForm[]>();
     const [showModalNewListProject, setStatusModal] = useState<boolean>(true);
     const { newListProject } = useProjectContext();
+    const { darkMode } = useThemeContext();
 
     useEffect(() => {
         opened(showModalNewListProject);
@@ -52,7 +54,7 @@ export const NewProjectList: React.FC<PassState> = ({ opened }) => {
 
 
     return <>
-        <div className="div-new-list-project">
+        <div className={`div-new-list-project ${darkMode ? 'dark' : ''}`}>
             <form onSubmit={submitNewProject}>
                 <div className="top-div">
                     <span className="title-new-list-project">Nova lista</span>

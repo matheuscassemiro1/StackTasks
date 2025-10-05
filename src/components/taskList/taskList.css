@@ -196,7 +196,15 @@
 .botao {
     color: rgb(61, 61, 61) !important;
     background: none !important;
+}
 
+.botao-dark {
+    background: none !important;
+}
+
+.botao-dark:hover {
+    color: rgb(255, 255, 255) !important;
+    background: none !important;
 }
 
 .botao:hover {

@@ -17,13 +17,12 @@ export const Header: React.FC = () => {
                 <span className="nomeAplicacao">StackTasks</span>
                 <div className="div-lists">
                     {projectList.map(l => {
-                        return <span key={`${l.id}`} onClick={() => { selectList(l) }} className={`lista ${l.id === selectedList?.id ? 'selecionado' : ''}`}>{l.nome}</span>
+                        return <span key={`${l.id}`} onClick={() => { selectList(l) }} className={`lista opt ${darkMode ? 'opt-dark' : ''} ${l.id === selectedList?.id ? 'selecionado' : ''}`}>{l.nome}</span>
                     })}
                 </div>
                 <div className="div-create-list">
-                    <span className="opt" onClick={() => { setModalNewListProj(true) }}>+ Criar</span>
+                    <span className={`opt ${darkMode ? 'opt-dark' : ''}`} onClick={() => { setModalNewListProj(true) }}>+ Criar</span>
                     {modalNewListProj ? <NewProjectList opened={setModalNewListProj}></NewProjectList> : ''}
-                    <span className="opt">⚙️</span>
                 </div>
             </div>
 
@@ -36,14 +35,14 @@ export const Header: React.FC = () => {
                     <div className="div-perfil">
                         <details className="details-div">
                             <summary className="div-perfil">
-                                <span className="nome-perfil">Matheus</span>
-                                <span className="letra-perfil">M</span>
+                                <span className={`nome-perfil ${darkMode ? 'dark' : ''}`}>Matheus</span>
+                                <span className={`letra-perfil ${darkMode ? 'dark' : ''}`} >M</span>
                             </summary>
 
-                            <div className="account-options">
-                                {darkMode ? <Button onClick={() => {toggleDarkMode()}} className="theme-button" $smaller>
+                            <div className={`account-options ${darkMode ? 'dark' : ''}`}>
+                                {darkMode ? <Button onClick={() => { toggleDarkMode() }} className="theme-button" $smaller>
                                     ☀️ Modo Claro
-                                </Button> : <Button onClick={() => {toggleDarkMode()}} className="theme-button" $smaller>
+                                </Button> : <Button onClick={() => { toggleDarkMode() }} className="theme-button" $smaller>
                                     🌙 Modo Escuro
                                 </Button>}
                                 <Button className="theme-button" $smaller>

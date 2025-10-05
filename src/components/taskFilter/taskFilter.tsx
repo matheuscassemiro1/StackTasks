@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./taskFilter.css"
 import { Project } from "../../types/project-types";
 import { NewProject } from "../new-project/newProject";
+import { useThemeContext } from "../../contexts/UseTheme";
 
 type Projects = {
     projects: Project[];
@@ -26,7 +27,7 @@ export const TaskFilter: React.FC<Projects> = ({ projects,
     setActiveTag }: Projects) => {
 
     const [showModalNewProj, setModalNewProj] = useState<boolean>(false);
-
+    const {darkMode} = useThemeContext();
 
     function checkSelected(projectName?: string): boolean {
         return projectName === selectedProject?.nome;
@@ -45,7 +46,7 @@ export const TaskFilter: React.FC<Projects> = ({ projects,
                         {projects.map(p => {
                             return (
                                 <div key={`${p.id}`}
-                                    className={`option ${checkSelected(p.nome) ? 'option-selected' : ''}`}
+                                    className={`option ${darkMode ? 'dark-opt' : ''} ${checkSelected(p.nome) ? 'option-selected' : ''}`}
                                 >
                                     <span className="span-opt" onClick={() => { selectProject(p) }}>{p.nome}</span>
                                     {projects.length > 1 ? <span className="delete-icon" onClick={() => deleteProject(p)} title="Excluir projeto">🗑️</span> : ''}
@@ -55,8 +56,8 @@ export const TaskFilter: React.FC<Projects> = ({ projects,
                     </div>
                     <span className="project-title">FILTROS</span>
                     <div className="topic-div">
-                        <span className={`filter ${onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setOnlyActivesTasks(true)}>Pendente</span>
-                        <span className={`filter ${!onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setOnlyActivesTasks(false)}>Todas</span>
+                        <span className={`filter ${darkMode ? 'filter-dark' : ''} ${onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setOnlyActivesTasks(true)}>Pendente</span>
+                        <span className={`filter ${darkMode ? 'filter-dark' : ''} ${!onlyActivesTasks ? 'filter-selected' : ''}`} onClick={() => setOnlyActivesTasks(false)}>Todas</span>
                     </div>
                     <span className="project-title">ETIQUETAS</span>
                     <div className="topic-div">
