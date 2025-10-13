@@ -20,6 +20,6 @@ const renderComponent = () => {
 describe("header", () => {
     it("deve renderizar o componente", () => {
         renderComponent();
-        expect(screen.queryByAltText('StackTasks')).toBeInTheDocument();
+        expect(screen.getByText('StackTasks')).toBeInTheDocument();
     })
 })

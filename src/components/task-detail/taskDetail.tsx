@@ -103,6 +103,7 @@ export const TaskDetail: React.FC<PassState> = ({ opened, taskCreated, editTask,
             }
         } else {
             console.log("form invalid")
+                        console.log(formulario)
         }
     }
 
@@ -142,7 +143,7 @@ export const TaskDetail: React.FC<PassState> = ({ opened, taskCreated, editTask,
                     <div>
                         <span>Vencimento</span>
                         <div className="input-case">
-                            <Input className={`${formErrors?.find(e => e.name === 'limit') ? 'invalid-input' : ''} ${formulario.limit && !formErrors?.find(f => f.name === "limit") ? 'valid-input' : ''}`} onChange={handleChange} onInput={handleChange} name="limit" type="date" value={formulario.limit}></Input>
+                            <Input data-testid="datepicker" className={`${formErrors?.find(e => e.name === 'limit') ? 'invalid-input' : ''} ${formulario.limit && !formErrors?.find(f => f.name === "limit") ? 'valid-input' : ''}`} onChange={handleChange} onInput={handleChange} name="limit" type="date" value={formulario.limit}></Input>
                             <span className={`datepicker ${formErrors?.find(e => e.name === 'limit') ? 'invalid-icon' : ''} ${formulario.limit && !formErrors?.find(f => f.name === "limit") ? 'valid-icon' : ''}`}></span>
                         </div>
                         {formErrors?.map((erro) => {
