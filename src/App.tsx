@@ -1,11 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { AuthProvider } from './contexts/AuthProvider';
+import { ProjectProvider } from './contexts/ProjectProvider';
+import { ThemeProvider } from './contexts/ThemeProvider';
 import { AppRoutes } from './routes/routes';
 
 function App() {
   return (
-    <AppRoutes/>
+    <AuthProvider>
+      <ThemeProvider>
+        <ProjectProvider>
+          <AppRoutes />
+        </ProjectProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 

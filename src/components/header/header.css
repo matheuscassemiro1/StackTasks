@@ -1,0 +1,192 @@
+.topbar {
+    background-color: rgb(252, 251, 251);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 1px solid gray;
+    padding: 0px 10px;
+}
+
+.div-lists {
+    display: flex;
+    min-width: 30%;
+    max-width: 300px;
+    overflow-x: auto;
+}
+
+.input-busca {
+    border-radius: 10px;
+}
+
+.flex1 {
+    flex: 1;
+    display: flex;
+}
+
+.div-create-list {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.nomeAplicacao {
+    padding: 10px;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.justify-start {
+    justify-content: start !important;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: end;
+}
+
+.div-logo {
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.div-opcoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.lista,
+.opt {
+    color: rgb(87, 87, 87);
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.opt-dark{
+    color: white;
+}
+
+.opt:hover {
+    color: rgb(62, 167, 253);
+    background-color: rgb(210, 234, 253);
+}
+
+.selecionado {
+    color: rgb(62, 167, 253);
+    background-color: rgb(210, 234, 253);
+}
+
+.div-perfil {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 1px;
+}
+
+.account-options {
+    position: absolute;
+    top: 100%;
+    margin-top: 1px;
+    background-color: rgb(230, 230, 230);
+    width: 120px;
+    cursor: default;
+    border-radius: 10px 10px 10px 10px;
+    background-color: rgba(252, 251, 251, 1);
+    border: 1px solid #b3b3b3ff;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.div-perfil > *{
+    user-select: none;   
+    -webkit-user-select: none;
+    -moz-user-select: none;   
+    -ms-user-select: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::marker {
+    content: none;
+    display: none;
+}
+
+.account-itens {
+    width: 100%;
+}
+
+.theme-menu {
+    width: 100%;
+}
+
+.nome-perfil {
+    color: rgb(87, 87, 87);
+}
+
+.letra-perfil {
+    font-weight: bold;
+    background: linear-gradient(135deg, #4facfe, #a166ff);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 100%;
+}
+
+.div-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #e9e9e9ff;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+.div-search:first-child {
+    cursor: default;
+}
+
+.input-busca {
+    border-radius: 0px;
+}
+
+.input-busca:focus {
+    border: none;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .div-perfil {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        margin: 5px;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    span.opt {
+        margin: 0px;
+    }
+}

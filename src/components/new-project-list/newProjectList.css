@@ -1,0 +1,56 @@
+.div-new-list-project {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: white;
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid #b3b3b3ff;
+    z-index: 9999;
+}
+
+.close-button {
+    cursor: pointer;
+    border: none;
+    background: none !important;
+    font-size: 1.4rem;
+    margin: 0px !important;
+    margin-bottom: 10px !important;
+}
+
+.error-message {
+    font-size: 0.6rem;
+}
+
+.top-div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: last baseline;
+    padding: 0px;
+}
+
+.title-new-list-project {
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+.input-div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.buttons-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}

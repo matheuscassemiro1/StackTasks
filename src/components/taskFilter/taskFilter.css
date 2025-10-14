@@ -1,0 +1,151 @@
+.divFilters {
+    display: block;
+    border-right: 1px solid gray;
+    width: 100%;
+    max-width: 25vw;
+    height: 100%;
+    max-height: 90vh;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.topicFilters {
+    margin-top: 5px;
+    display: flex;
+    height: 90vh;
+    flex-direction: column;
+}
+
+.div-projects{
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topic-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2px;
+    gap: 5px;
+    flex: 1;
+    margin-left: 15px;
+    padding: 0;
+    overflow: auto;
+}
+
+.project-title {
+    margin-left: 10px;
+    font-size: 0.8rem;
+    cursor: default;
+    color: rgb(168, 168, 168);
+}
+
+.option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 1.1rem;
+    padding: 5px;
+    color: rgb(68, 68, 68);
+    border-radius: 5px;
+}
+
+.dark-opt{
+    color: rgb(223, 223, 223);
+}
+
+.span-opt{
+    flex: 1;
+}
+
+.option-selected {
+    color: rgb(62, 167, 253);
+    background-color: rgb(210, 234, 253);
+}
+
+.filter {
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 5px;
+    color: rgb(68, 68, 68);
+    border-radius: 5px;
+}
+
+.filter-dark {
+    color: rgb(223, 223, 223);
+}
+
+.filter-selected {
+    color: rgb(68, 68, 68);
+    background-color: rgb(219, 219, 219);
+}
+
+
+.filter:hover {
+    color: rgb(65, 65, 65);
+    background-color: rgb(219, 219, 219);
+}
+
+.option:hover {
+    color: rgb(62, 167, 253);
+    cursor: pointer;
+    background-color: rgb(210, 234, 253);
+    border-radius: 5px;
+}
+
+.tag {
+    cursor: pointer;
+    background-color: rgb(212, 212, 212);
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+    padding-top: 0;
+    font-size: 0.8rem;
+    vertical-align: middle;
+}
+
+.tag-selected {
+    color: white;
+    background-color: rgb(97, 97, 97) !important;
+}
+
+.div-flex {
+    height: 100% !important;
+    background-color: red;
+    overflow: auto;
+}
+
+.div-tags {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+
+@media (max-width: 768px) {
+    .divFilters {
+        padding: 0px;
+    }
+
+    .topicFilters>div {
+        margin-left: 10px;
+    }
+
+    .topicFilters>span {
+        margin-left: 5px;
+    }
+
+    .option {
+        padding: 0px;
+    }
+}
