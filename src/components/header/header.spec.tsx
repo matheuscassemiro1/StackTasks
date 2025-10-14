@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import { ProjectProvider } from "../../contexts/ProjectProvider";
-import { ThemeProvider } from "../../contexts/UseTheme";
+import { ThemeProvider } from "../../contexts/ThemeProvider";
 import { Header } from "./header";
 
 

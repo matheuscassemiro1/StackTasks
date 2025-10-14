@@ -8,7 +8,7 @@ import { Header } from "../components/header/header";
 import { useProjectContext } from "../contexts/ProjectProvider";
 import "./ProjectsContainer.css"
 import { Task } from "../types/task";
-import { useThemeContext } from "../contexts/UseTheme";
+import { useThemeContext } from "../contexts/ThemeProvider";
 
 export const ProjectsContainer: React.FC = () => {
     const {

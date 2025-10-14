@@ -1,9 +1,8 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { ThemeProvider } from "../../contexts/UseTheme";
+import { ThemeProvider } from "../../contexts/ThemeProvider";
 import { ProjectProvider } from "../../contexts/ProjectProvider";
 import { TaskDetail } from "./taskDetail";
-import { Task } from "../../types/task";
 
 
 const mockTaskCreate = jest.fn();

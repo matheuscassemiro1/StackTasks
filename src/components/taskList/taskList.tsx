@@ -3,7 +3,7 @@ import { Task } from "../../types/task";
 import { Button } from "../../styles/global";
 import { OrderBy } from "../../types/orderTypes";
 import "./taskList.css"
-import { useThemeContext } from "../../contexts/UseTheme";
+import { useThemeContext } from "../../contexts/ThemeProvider";
 
 type TaskListData = {
     tasks?: Task[] | undefined,

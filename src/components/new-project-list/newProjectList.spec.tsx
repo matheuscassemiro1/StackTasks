@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { NewProjectList } from "./newProjectList";
 import { ProjectProvider } from "../../contexts/ProjectProvider";
-import { ThemeProvider } from "../../contexts/UseTheme";
+import { ThemeProvider } from "../../contexts/ThemeProvider";
 
 const renderComponent = () => {
     render(

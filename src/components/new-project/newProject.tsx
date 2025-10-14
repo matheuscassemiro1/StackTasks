@@ -3,7 +3,7 @@ import { Button, Input } from "../../styles/global";
 import "./newProject.css";
 import { ErrorsForm } from "../../types/errorsForm";
 import { useProjectContext } from "../../contexts/ProjectProvider";
-import { useThemeContext } from "../../contexts/UseTheme";
+import { useThemeContext } from "../../contexts/ThemeProvider";
 
 
 type PassState = {

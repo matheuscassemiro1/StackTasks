@@ -4,13 +4,20 @@ import { Button, Input } from "../../styles/global";
 
 import { useProjectContext } from "../../contexts/ProjectProvider";
 import { NewProjectList } from "../new-project-list/newProjectList";
-import { useThemeContext } from "../../contexts/UseTheme";
+import { useThemeContext } from "../../contexts/ThemeProvider";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthProvider";
 
 export const Header: React.FC = () => {
     const { setSearchString, projectList, selectedList, selectList } = useProjectContext();
     const [modalNewListProj, setModalNewListProj] = useState<boolean>(false);
     const { darkMode, toggleDarkMode } = useThemeContext();
+    const navigate = useNavigate();
+    const { logout, authenticatedUser } = useAuthContext();
 
+    function logoff() {
+        navigate('/');
+    }
     return (
         <header className={`topbar ${darkMode ? 'dark' : ''}`}>
             <div className="div-logo flex1 justify-start" >
@@ -35,8 +42,8 @@ export const Header: React.FC = () => {
                     <div className="div-perfil">
                         <details className="details-div">
                             <summary className="div-perfil">
-                                <span className={`nome-perfil ${darkMode ? 'dark' : ''}`}>Matheus</span>
-                                <span className={`letra-perfil ${darkMode ? 'dark' : ''}`} >M</span>
+                                <span className={`nome-perfil ${darkMode ? 'dark' : ''}`}>{authenticatedUser?.nome}</span>
+                                <span className={`letra-perfil ${darkMode ? 'dark' : ''}`} >{authenticatedUser?.nome.slice(0, 1)}</span>
                             </summary>
 
                             <div className={`account-options ${darkMode ? 'dark' : ''}`}>
@@ -45,7 +52,7 @@ export const Header: React.FC = () => {
                                 </Button> : <Button onClick={() => { toggleDarkMode() }} className="theme-button" $smaller>
                                     🌙 Modo Escuro
                                 </Button>}
-                                <Button className="theme-button" $smaller>
+                                <Button onClick={logoff} className="theme-button" $smaller>
                                     Sair
                                 </Button>
                             </div>

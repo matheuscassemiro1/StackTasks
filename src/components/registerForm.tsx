@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import "./loginForms.css"
 import { Button, Input } from "../styles/global";
 import { ErrorsForm } from "../types/errorsForm";
+import { useAuthContext } from "../contexts/AuthProvider";
 
+type Register = {
+    registered: () => void;
+}
 
-export const RegisterForm: React.FC = () => {
+export const RegisterForm: React.FC<Register> = ({ registered }) => {
     type FormRegister = {
         nome?: string,
         login?: string,
         senha?: string
     }
+    const { createUser } = useAuthContext();
 
     const [errors, setErrors] = useState<ErrorsForm[]>([]);
 
@@ -24,7 +29,18 @@ export const RegisterForm: React.FC = () => {
     function handleRegister(e: React.FormEvent): void {
         e.preventDefault();
         if (validateRegisterForm()) {
-            console.log("registrado");
+            const tryRegister = createUser(
+                {
+                    nome: formularioRegistro!.nome!,
+                    login: formularioRegistro!.login!,
+                    senha: formularioRegistro!.senha!
+                }
+            )
+            if (tryRegister.sucesso) {
+                registered();
+            } else {
+                alert(tryRegister.mensagem)
+            }
         }
     }
 
@@ -37,8 +53,8 @@ export const RegisterForm: React.FC = () => {
         if (!formularioRegistro?.login || formularioRegistro?.login?.length < 3) {
             errosTemp.push({ name: "login", message: "Preencha o login com mais de 3 letras" });
         }
-        if (!formularioRegistro?.senha || formularioRegistro?.senha?.length < 6) {
-            errosTemp.push({ name: "senha", message: "Preencha a senha com ao mínimo 6 dígitos" });
+        if (!formularioRegistro?.senha || formularioRegistro?.senha?.length < 5) {
+            errosTemp.push({ name: "senha", message: "Preencha a senha com ao mínimo 5 dígitos" });
         }
 
         setErrors(errosTemp);
@@ -65,8 +81,8 @@ export const RegisterForm: React.FC = () => {
                 }
                 break;
             case 'senha':
-                if (!formularioRegistro?.senha || value.length < 6) {
-                    errorsTemp.push({ name: "senha", message: "Preencha a senha com ao mínimo 6 dígitos" });
+                if (!formularioRegistro?.senha || value.length < 5) {
+                    errorsTemp.push({ name: "senha", message: "Preencha a senha com ao mínimo 5 dígitos" });
                 }
                 break;
         }

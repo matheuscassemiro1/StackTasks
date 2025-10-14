@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./taskFilter.css"
 import { Project } from "../../types/project-types";
 import { NewProject } from "../new-project/newProject";
-import { useThemeContext } from "../../contexts/UseTheme";
+import { useThemeContext } from "../../contexts/ThemeProvider";
 
 type Projects = {
     projects: Project[];

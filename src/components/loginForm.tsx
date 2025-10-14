@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import './loginForms.css'
 import { Button, Input } from "../styles/global";
 import { ErrorsForm } from "../types/errorsForm";
+import { useAuthContext } from "../contexts/AuthProvider";
+import { useNavigate } from "react-router-dom";
+
 
 export const LoginForm: React.FC = () => {
+    const { login } = useAuthContext();
+    const navigate = useNavigate();
     type FormLogin = {
         login?: string,
         senha?: string
@@ -17,7 +22,7 @@ export const LoginForm: React.FC = () => {
     });
 
     const [errorsForm, setErrors] = useState<ErrorsForm[]>([]);
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
         setForm((prevForm) => ({
@@ -32,8 +37,8 @@ export const LoginForm: React.FC = () => {
                 }
                 break;
             case 'senha':
-                if (!formLogin.senha || value.length < 6) {
-                    errorsTemp.push({ name: "senha", message: "A senha é inválida. Insira ao menos 6 caracteres." });
+                if (!formLogin.senha || value.length < 5) {
+                    errorsTemp.push({ name: "senha", message: "A senha é inválida. Insira ao menos 5 caracteres." });
                     break;
                 }
         }
@@ -49,7 +54,12 @@ export const LoginForm: React.FC = () => {
         e.preventDefault();
         if (formIsValid) {
             console.log("form ok, submitted");
-            console.log(formLogin);
+            const tryLogin = login(formLogin.login!, formLogin.senha!);
+            if (tryLogin.sucesso) {
+                navigate('/home');
+            } else {
+                alert(tryLogin.mensagem)
+            }
         }
     }
 
