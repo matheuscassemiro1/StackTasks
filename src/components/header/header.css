@@ -115,6 +115,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+    right: 1%;
 }
 
 .div-perfil > *{

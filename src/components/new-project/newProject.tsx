@@ -22,13 +22,12 @@ export const NewProject: React.FC<PassState> = ({ opened }) => {
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
         const { name, value } = event.target;
-        let revisedValue = value.replace(/\s/g, '');
-
-        setNomeProjeto(revisedValue);
+        
+        setNomeProjeto(value);
 
         setFormErrors((prevErrors = []) => {
             const filtered = prevErrors.filter((err) => err.name !== name);
-            if (name === 'name' && revisedValue.length < 3) {
+            if (name === 'name' && value.length < 3) {
                 filtered.push({ name: 'name', message: 'O nome precisa ter pelo menos 3 letras.' });
             }
             return filtered;

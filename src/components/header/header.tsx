@@ -37,13 +37,15 @@ export const Header: React.FC = () => {
                 <div className="div-perfil">
                     <div className="div-search">
                         <span>🔍</span>
-                        <Input $alternative className="input-busca" placeholder="Buscar tarefas, tags..." onChange={(e) => { setSearchString(e.target.value) }} />
+                        <Input $alternative className="input-busca" placeholder="Buscar tarefas, tags..." onChange={(e) => { setSearchString(e.target.value.toLowerCase()) }} />
                     </div>
                     <div className="div-perfil">
                         <details className="details-div">
                             <summary className="div-perfil">
-                                <span className={`nome-perfil ${darkMode ? 'dark' : ''}`}>{authenticatedUser?.nome}</span>
-                                <span className={`letra-perfil ${darkMode ? 'dark' : ''}`} >{authenticatedUser?.nome.slice(0, 1)}</span>
+                                <span className={`nome-perfil ${darkMode ? 'dark' : ''}`}> {authenticatedUser?.nome
+                                    ? authenticatedUser.nome.charAt(0).toUpperCase() + authenticatedUser.nome.slice(1)
+                                    : ''}</span>
+                                <span className={`letra-perfil ${darkMode ? 'dark' : ''}`} >{authenticatedUser?.nome.slice(0, 1).toUpperCase()}</span>
                             </summary>
 
                             <div className={`account-options ${darkMode ? 'dark' : ''}`}>
