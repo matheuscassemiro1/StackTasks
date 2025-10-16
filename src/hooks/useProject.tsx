@@ -281,13 +281,18 @@ export function useProject() {
         let maxOrder = 0;
         if (selectedProject!.tasks!.length >= 1) {
             lastId = selectedProject!.tasks!.reduce((ant, t) => { return t.id > ant.id ? t : ant }).id + 1;
-            maxOrder = selectedProject!.tasks!.reduce((ant, t) => { return t.order > ant.order && !t.done ? t : ant }).order + 1;
+            //maxOrder = selectedProject!.tasks!.reduce((ant, t) => { return t.order > ant.order && !t.done ? t : ant }).order + 1;
         }
         let newTask = task;
         newTask.id = lastId;
         newTask.done = false;
         newTask.order = maxOrder;
         let tempTasks = selectedProject!.tasks || [];
+        if(tempTasks.length >= 0){
+            tempTasks.forEach(t => {
+                t.order = t.order + 1
+            })
+        }
         let auxProject = selectedProject!
         tempTasks.push(newTask as Task);
         auxProject!.tasks = tempTasks;
