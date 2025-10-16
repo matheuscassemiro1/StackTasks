@@ -53,7 +53,6 @@ export const LoginForm: React.FC = () => {
     function handleSubmit(e: React.FormEvent): void {
         e.preventDefault();
         if (formIsValid) {
-            console.log("form ok, submitted");
             const tryLogin = login(formLogin.login!, formLogin.senha!);
             if (tryLogin.sucesso) {
                 navigate('/home');
