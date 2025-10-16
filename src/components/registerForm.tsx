@@ -99,7 +99,7 @@ export const RegisterForm: React.FC<Register> = ({ registered }) => {
             <h2>Registro</h2>
             <form className="formulario" onSubmit={handleRegister}>
                 {errors.map((erro) => {
-                    if (erro.name === "nome") return <span className="error-message">{erro.message}</span>
+                    if (erro.name === "nome") return <span key={erro.name} className="error-message">{erro.message}</span>
                 })}
                 <div className="input-case">
                     <Input
@@ -111,7 +111,7 @@ export const RegisterForm: React.FC<Register> = ({ registered }) => {
                     <span className={`${errors.find(e => e.name === 'nome') ? 'invalid-icon' : ''} ${formularioRegistro.nome && !errors.find(e => e.name === 'nome') ? 'valid-icon' : ''}`}></span>
                 </div>
                 {errors.map((erro) => {
-                    if (erro.name === "login") return <span className="error-message">{erro.message}</span>
+                    if (erro.name === "login") return <span key={erro.name} className="error-message">{erro.message}</span>
                 })}
                 <div className="input-case">
                     <Input
@@ -122,7 +122,7 @@ export const RegisterForm: React.FC<Register> = ({ registered }) => {
                     <span className={`${errors.find(e => e.name === 'login') ? 'invalid-icon' : ''} ${formularioRegistro.login && !errors.find(e => e.name === 'login') ? 'valid-icon' : ''}`}></span>
                 </div>
                 {errors.map((erro) => {
-                    if (erro.name === "senha") return <span className="error-message">{erro.message}</span>
+                    if (erro.name === "senha") return <span key={erro.name} className="error-message">{erro.message}</span>
                 })}
                 <div className="input-case">
                     <Input
