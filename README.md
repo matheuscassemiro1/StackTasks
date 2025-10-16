@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# 📝 StackTasks — Gerenciador de Tarefas em React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Um aplicativo simples e intuitivo para gerenciamento de tarefas (to-do list), desenvolvido em **React + TypeScript**.  
+Permite **criar, editar, excluir, ordenar e filtrar tarefas** com facilidade.
 
-## Available Scripts
+Este projeto foi criado com o objetivo de **explorar o React em profundidade**, testando seus limites e boas práticas na construção de interfaces modernas e reativas.
 
-In the project directory, you can run:
+## 🧩 Tecnologias
 
-### `npm start`
+- ⚛️ [React](https://react.dev/) — biblioteca principal para construção da interface  
+- 🟦 [TypeScript](https://www.typescriptlang.org/) — tipagem estática  
+- 🧠 [Context API](https://react.dev/reference/react/useContext) — gerenciamento de estado global  
+- 💅 [Styled Components](https://styled-components.com/) — estilização
+- 🧪 [Jest](https://jestjs.io/) — framework de testes unitários  
+- 🧰 [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) — utilitário para testes de componentes React focado em comportamento do usuário
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ✨ Funcionalidades
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+| Status | Funcionalidade | Descrição |
+|:------:|----------------|------------|
+| ✅ | Criar e excluir listas de projetos | Permite gerenciar lista de projetos |
+| ✅ | Criar e excluir projetos e suas tarefas | Permite gerenciar o projeto |
+| ✅ | Criar e excluir tarefas | Permite adicionar novas tarefas e removê-las da lista |
+| ✅ | Marcar como concluída | Altera o status da tarefa para "feita" com um clique |
+| ✅ | Editar a tarefa | Permite editar tarefas existentes diretamente na interface |
+| ✅ | Ordernar tarefas manualmente | Permite reorganizar a posição das tarefas na tela, com preview e confirmação |
+| ✅ | Filtrar por status | Mostra todas ou pendentes, conforme o filtro ativo |
+| ✅ | Filtrar por tags | Filtra e mostra somente tarefas com a tag selecionada |
+| ✅ | Busca por texto | Busca tarefas pela palavra chave digitada, considerando nome, descrição e tags que esta possui |
+| ✅ | Ordenar tarefas | Ordena tarefas por data de vencimento (limite) ou ordem definida |
+| ✅ | Modo escuro | Altera o layout do projeto para o modo escuro |
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ⚡ Demonstração
+Confira como o app funciona abaixo:
+![Demonstração do App](./docs/funcionalidades.gif)
 
-### `npm run build`
+Ou experimente você mesmo acessando o aplicativo:
+https://stack-tasks.vercel.app/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⚙️ Instalação e Execução
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Clone o repositório
+git clone https://github.com/matheuscassemiro1/stacktasks.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Entre na pasta
+cd stacktasks
 
-### `npm run eject`
+# Instale as dependências
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Execute o projeto
+npm start
+```
+O app estará disponível em: http://localhost:3000
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📝 Licença
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Este projeto está licenciado sob a licença **MIT**.  
+Veja o arquivo [LICENSE](./LICENSE.md) para mais detalhes.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## 👨‍💻 Autor
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Matheus Cassemiro**  
+Desenvolvedor Fullstack | Angular | React | TypeScript | Node.js  
+[LinkedIn](https://www.linkedin.com/in/matheus-cassemiro-127441261) 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
