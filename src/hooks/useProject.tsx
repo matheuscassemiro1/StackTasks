@@ -186,9 +186,9 @@ export function useProject() {
             }
         })
         if (task.done) {
-            toast.info("Task reaberta", { autoClose: 2000 })
+            toast.info("Tarefa reaberta", { autoClose: 2000 })
         } else {
-            toast.success("Task completada", { autoClose: 2000 })
+            toast.success("Tarefa completada", { autoClose: 2000 })
         }
         updateProject(auxProjTemp!);
         setOriginalSelected(auxProjTemp!)
