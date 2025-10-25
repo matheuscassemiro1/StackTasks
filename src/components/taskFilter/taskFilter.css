@@ -12,7 +12,7 @@
 .topicFilters {
     margin-top: 5px;
     display: flex;
-    height: 90vh;
+    height: 95%;
     flex-direction: column;
 }
 

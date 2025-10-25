@@ -38,8 +38,6 @@ export const RegisterForm: React.FC<Register> = ({ registered }) => {
             )
             if (tryRegister.sucesso) {
                 registered();
-            } else {
-                alert(tryRegister.mensagem)
             }
         }
     }

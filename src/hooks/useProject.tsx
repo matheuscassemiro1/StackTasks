@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Project, ProjectList } from "../types/project-types";
 import { Task } from "../types/task";
 import { OrderBy } from "../types/orderTypes";
+import { toast } from "react-toastify";
 
 export function useProject() {
     const [projectList, setProjectList] = useState<ProjectList[]>(
@@ -47,39 +48,29 @@ export function useProject() {
                     },
                     {
                         id: 3,
-                        nome: "Projeto Exemplo3",
-                        tasks: [
-                            { id: 1, name: "Tarefa 1", description: "Descrição da tarefa 1", tags: ["exemplo", "teste"], done: false, order: 0, limit: "2025-09-14" },
-                            { id: 2, name: "Tarefa 2", description: "Descrição da tarefa 2", tags: ["exemplo", "teste"], done: false, order: 1, limit: "2025-09-15" },
-                            { id: 3, name: "Tarefa 3", description: "Descrição da tarefa 3", tags: ["exemplo", "teste"], done: false, order: 2, limit: "2025-09-16" },
-                            { id: 4, name: "Tarefa 4", description: "Descrição da tarefa 4", tags: ["exemplo", "teste"], done: false, order: 3, limit: "2025-09-17" },
-                            { id: 5, name: "Tarefa 5", description: "Descrição da tarefa 5", tags: ["exemplo", "teste"], done: false, order: 4, limit: "2025-09-18" },
-                            { id: 6, name: "Tarefa 6", description: "Descrição da tarefa 6", tags: ["exemplo", "teste"], done: false, order: 5, limit: "2025-09-19" },
-                            { id: 7, name: "Tarefa 7", description: "Descrição da tarefa 7", tags: ["exemplo", "teste"], done: false, order: 6, limit: "2025-09-20" },
-                            { id: 8, name: "Tarefa 8", description: "Descrição da tarefa 8", tags: ["exemplo", "teste"], done: false, order: 7, limit: "2025-09-21" },
-                            { id: 9, name: "Tarefa 9", description: "Descrição da tarefa 9", tags: ["exemplo", "teste"], done: false, order: 8, limit: "2025-09-22" },
-                            { id: 10, name: "Tarefa 10", description: "Descrição da tarefa 10", tags: ["exemplo", "teste"], done: false, order: 9, limit: "2025-09-23" },
-                            { id: 11, name: "Tarefa 11", description: "Descrição da tarefa 11", tags: ["exemplo", "teste"], done: false, order: 10, limit: "2025-09-24" },
-                            { id: 12, name: "Tarefa 12", description: "Descrição da tarefa 12", tags: ["exemplo", "teste"], done: false, order: 11, limit: "2025-09-25" },
-                            { id: 13, name: "Tarefa 13", description: "Descrição da tarefa 13", tags: ["exemplo", "teste"], done: false, order: 12, limit: "2025-09-26" },
-                            { id: 14, name: "Tarefa 14", description: "Descrição da tarefa 14", tags: ["exemplo", "teste"], done: false, order: 13, limit: "2025-09-27" },
-                            { id: 15, name: "Tarefa 15", description: "Descrição da tarefa 15", tags: ["exemplo", "teste"], done: false, order: 14, limit: "2025-09-28" },
-                            { id: 16, name: "Tarefa 16", description: "Descrição da tarefa 16", tags: ["exemplo", "teste"], done: false, order: 15, limit: "2025-09-29" },
-                            { id: 17, name: "Tarefa 17", description: "Descrição da tarefa 17", tags: ["exemplo", "teste"], done: false, order: 16, limit: "2025-09-30" },
-                            { id: 18, name: "Tarefa 18", description: "Descrição da tarefa 18", tags: ["exemplo", "teste"], done: false, order: 17, limit: "2025-10-01" },
-                            { id: 19, name: "Tarefa 19", description: "Descrição da tarefa 19", tags: ["exemplo", "teste"], done: false, order: 18, limit: "2025-10-02" },
-                            { id: 20, name: "Tarefa 20", description: "Descrição da tarefa 20", tags: ["exemplo", "teste"], done: false, order: 19, limit: "2025-10-03" },
-                            { id: 21, name: "Tarefa 21", description: "Descrição da tarefa 21", tags: ["exemplo", "teste"], done: false, order: 20, limit: "2025-10-04" },
-                            { id: 22, name: "Tarefa 22", description: "Descrição da tarefa 22", tags: ["exemplo", "teste"], done: false, order: 21, limit: "2025-10-05" },
-                            { id: 23, name: "Tarefa 23", description: "Descrição da tarefa 23", tags: ["exemplo", "teste"], done: false, order: 22, limit: "2025-10-06" },
-                            { id: 24, name: "Tarefa 24", description: "Descrição da tarefa 24", tags: ["exemplo", "teste"], done: false, order: 23, limit: "2025-10-07" },
-                            { id: 25, name: "Tarefa 25", description: "Descrição da tarefa 25", tags: ["exemplo", "teste"], done: false, order: 24, limit: "2025-10-08" },
-                            { id: 26, name: "Tarefa 26", description: "Descrição da tarefa 26", tags: ["exemplo", "teste"], done: false, order: 25, limit: "2025-10-09" },
-                            { id: 27, name: "Tarefa 27", description: "Descrição da tarefa 27", tags: ["exemplo", "teste"], done: false, order: 26, limit: "2025-10-10" },
-                            { id: 28, name: "Tarefa 28", description: "Descrição da tarefa 28", tags: ["exemplo", "teste"], done: false, order: 27, limit: "2025-10-11" },
-                            { id: 29, name: "Tarefa 29", description: "Descrição da tarefa 29", tags: ["exemplo", "teste"], done: false, order: 28, limit: "2025-10-12" },
-                            { id: 30, name: "Tarefa 30", description: "Descrição da tarefa 30", tags: ["exemplo", "teste"], done: false, order: 29, limit: "2025-10-13" }
-                        ]
+                        nome: "Projeto Exemplo",
+                        tasks: [{ id: 1, name: "Revisar contrato", description: "Verificar cláusulas e prazos do novo contrato.", tags: ["trabalho", "urgente"], done: false, order: 0, limit: "2025-09-14" },
+                        { id: 2, name: "Estudar React", description: "Praticar hooks e componentização.", tags: ["estudo", "frontend"], done: true, order: 1, limit: "2025-09-15" },
+                        { id: 3, name: "Limpar o quarto", description: "Organizar livros e roupas.", tags: ["casa"], done: false, order: 2, limit: "2025-09-16" },
+                        { id: 4, name: "Fazer backup", description: "Salvar arquivos importantes no drive.", tags: ["segurança", "tecnologia"], done: true, order: 3, limit: "2025-09-17" },
+                        { id: 5, name: "Enviar relatório", description: "Relatório semanal de desempenho.", tags: ["trabalho", "relatório"], done: false, order: 4, limit: "2025-09-18" },
+                        { id: 6, name: "Comprar mantimentos", description: "Leite, frutas e produtos de limpeza.", tags: ["mercado", "casa"], done: false, order: 5, limit: "2025-09-19" },
+                        { id: 7, name: "Atualizar portfólio", description: "Adicionar projetos recentes no site pessoal.", tags: ["carreira", "design"], done: true, order: 6, limit: "2025-09-20" },
+                        { id: 8, name: "Planejar viagem", description: "Escolher destino e reservar hospedagem.", tags: ["lazer", "planejamento"], done: false, order: 7, limit: "2025-09-21" },
+                        { id: 9, name: "Reunião com equipe", description: "Discutir metas do próximo trimestre.", tags: ["trabalho", "reunião"], done: false, order: 8, limit: "2025-09-22" },
+                        { id: 10, name: "Aprender TypeScript", description: "Converter projeto JS para TS.", tags: ["estudo", "programação"], done: false, order: 9, limit: "2025-09-23" },
+                        { id: 11, name: "Pagar contas", description: "Luz, internet e cartão de crédito.", tags: ["financeiro"], done: true, order: 10, limit: "2025-09-24" },
+                        { id: 12, name: "Escrever artigo", description: "Artigo sobre produtividade para o blog.", tags: ["escrita", "trabalho"], done: false, order: 11, limit: "2025-09-25" },
+                        { id: 13, name: "Exercícios físicos", description: "Treino de resistência e alongamento.", tags: ["saúde"], done: true, order: 12, limit: "2025-09-26" },
+                        { id: 14, name: "Assistir workshop", description: "Participar de workshop online de UI/UX.", tags: ["design", "aprendizado"], done: false, order: 13, limit: "2025-09-27" },
+                        { id: 15, name: "Organizar finanças", description: "Atualizar planilha de gastos mensais.", tags: ["financeiro"], done: false, order: 14, limit: "2025-09-28" },
+                        { id: 16, name: "Responder e-mails", description: "Limpar caixa de entrada e priorizar mensagens.", tags: ["trabalho", "comunicação"], done: true, order: 15, limit: "2025-09-29" },
+                        { id: 17, name: "Revisar código", description: "Fazer code review do novo módulo.", tags: ["backend", "programação"], done: false, order: 16, limit: "2025-09-30" },
+                        { id: 18, name: "Ler livro", description: "Avançar no capítulo 5 de 'Clean Code'.", tags: ["leitura", "estudo"], done: false, order: 17, limit: "2025-10-01" },
+                        { id: 19, name: "Atualizar currículo", description: "Adicionar experiências recentes.", tags: ["carreira"], done: true, order: 18, limit: "2025-10-02" },
+                        { id: 20, name: "Fazer testes", description: "Criar testes unitários para o módulo de login.", tags: ["programação", "qualidade"], done: false, order: 19, limit: "2025-10-03" },
+                        { id: 21, name: "Ligar para o suporte", description: "Resolver problema com a operadora.", tags: ["pessoal"], done: false, order: 20, limit: "2025-10-04" },
+                        { id: 22, name: "Cuidar das plantas", description: "Regar e podar plantas da varanda.", tags: ["casa", "lazer"], done: true, order: 21, limit: "2025-10-05" }]
                     }]
             }
         ]
@@ -127,6 +118,7 @@ export function useProject() {
             nome: nome,
             tasks: []
         } as Project;
+        toast.success("Novo projeto adicionado", { autoClose: 2000 });
         setProjects((previous) => ([...previous!, newProject]))
     }
 
@@ -137,6 +129,7 @@ export function useProject() {
             nome: nome,
             projects: []
         } as ProjectList;
+        toast.success("Nova lista adicionada", { autoClose: 2000 });
         setProjectList((previous) => ([...previous!, newProjectList]))
     }
 
@@ -192,6 +185,11 @@ export function useProject() {
                 }
             }
         })
+        if (task.done) {
+            toast.info("Task reaberta", { autoClose: 2000 })
+        } else {
+            toast.success("Task completada", { autoClose: 2000 })
+        }
         updateProject(auxProjTemp!);
         setOriginalSelected(auxProjTemp!)
         setSelectedProject(p => ({ ...p!, tasks: tarefasAtualizadas }))
@@ -201,6 +199,7 @@ export function useProject() {
         let auxProjects = projects!.filter(p => p.id !== proj.id);
         setProjects(auxProjects);
         selectProject(auxProjects[0]);
+         toast.success("Projeto excluído", { autoClose: 2000 });
     }
 
     function changeOrder(task: Task, direcao: string) {
@@ -256,6 +255,7 @@ export function useProject() {
         updateProject(projectTemp);
         setOriginalSelected(projectTemp)
         setSelectedProject((previous) => ({ ...previous!, tasks: tasksTemp }));
+        toast.success("Tarefa deletada", { autoClose: 2000 });
     }
 
     const orderTask = (a: Task, b: Task): number => {
@@ -288,7 +288,7 @@ export function useProject() {
         newTask.done = false;
         newTask.order = maxOrder;
         let tempTasks = selectedProject!.tasks || [];
-        if(tempTasks.length >= 0){
+        if (tempTasks.length >= 0) {
             tempTasks.forEach(t => {
                 t.order = t.order + 1
             })
@@ -298,6 +298,7 @@ export function useProject() {
         auxProject!.tasks = tempTasks;
         updateProject(auxProject);
         setSelectedProject((previous) => (({ ...previous!, tasks: tempTasks })));
+        toast.success("Tarefa criada", { autoClose: 2000 });
     }
 
     const taskEdit = (task: Task): void => {
@@ -312,6 +313,7 @@ export function useProject() {
         auxProject!.tasks = tempTasks;
         updateProject(auxProject);
         setSelectedProject((previous) => (({ ...previous!, tasks: tempTasks })));
+        toast.success("Tarefa alterada", { autoClose: 2000 });
     }
 
     function selectProject(proj: Project): void {
@@ -325,8 +327,14 @@ export function useProject() {
     }
 
     function finishTaskChanges(action: string, project?: Project): void {
-        if (action === 'revert') setSelectedProject(projects!.find(p => p.id === selectedProject!.id))
-        if (action === 'save') updateProject(project!)
+        if (action === 'revert') {
+            toast.info("Ordenação revertida", { autoClose: 2000 });
+            setSelectedProject(projects!.find(p => p.id === selectedProject!.id))
+        }
+        if (action === 'save') {
+            toast.success("Ordenação salva", { autoClose: 2000 });
+            updateProject(project!)
+        }
         setReviseTaskChangesMode(false);
         setTasksOrdersChanged(false);
     }

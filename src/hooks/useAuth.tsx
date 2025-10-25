@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 type LoggedUser = {
     nome: string,
@@ -23,8 +24,10 @@ export function useAuth() {
     function createUser(user: User): Resposta {
         if (!users.find(u => u.login === user.login)) {
             setUsers((previous) => ([...previous, user]))
+            toast.success("O usuário foi criado", { autoClose: 2000 });
             return { sucesso: true, mensagem: "O usuário foi criado." }
         } {
+            toast.error("O usuário já existe", { autoClose: 2000 });
             return { sucesso: false, mensagem: "O usuário já existe." }
         }
     }
@@ -40,7 +43,8 @@ export function useAuth() {
             )
             return { sucesso: true, mensagem: "Logado com sucesso." }
         } else {
-            return { sucesso: false, mensagem: "Usuário ou senha incorreta" }
+            toast.error("Usuário ou senha incorretos", { autoClose: 2000 });
+            return { sucesso: false, mensagem: "Usuário ou senha incorretos" }
         }
     }
 

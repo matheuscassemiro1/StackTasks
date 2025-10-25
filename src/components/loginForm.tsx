@@ -56,9 +56,7 @@ export const LoginForm: React.FC = () => {
             const tryLogin = login(formLogin.login!, formLogin.senha!);
             if (tryLogin.sucesso) {
                 navigate('/home');
-            } else {
-                alert(tryLogin.mensagem)
-            }
+            } 
         }
     }
 
