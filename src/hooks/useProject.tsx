@@ -49,28 +49,29 @@ export function useProject() {
                     {
                         id: 3,
                         nome: "Projeto Exemplo",
-                        tasks: [{ id: 1, name: "Revisar contrato", description: "Verificar cláusulas e prazos do novo contrato.", tags: ["trabalho", "urgente"], done: false, order: 0, limit: "2025-09-14" },
-                        { id: 2, name: "Estudar React", description: "Praticar hooks e componentização.", tags: ["estudo", "frontend"], done: true, order: 1, limit: "2025-09-15" },
-                        { id: 3, name: "Limpar o quarto", description: "Organizar livros e roupas.", tags: ["casa"], done: false, order: 2, limit: "2025-09-16" },
-                        { id: 4, name: "Fazer backup", description: "Salvar arquivos importantes no drive.", tags: ["segurança", "tecnologia"], done: true, order: 3, limit: "2025-09-17" },
-                        { id: 5, name: "Enviar relatório", description: "Relatório semanal de desempenho.", tags: ["trabalho", "relatório"], done: false, order: 4, limit: "2025-09-18" },
-                        { id: 6, name: "Comprar mantimentos", description: "Leite, frutas e produtos de limpeza.", tags: ["mercado", "casa"], done: false, order: 5, limit: "2025-09-19" },
-                        { id: 7, name: "Atualizar portfólio", description: "Adicionar projetos recentes no site pessoal.", tags: ["carreira", "design"], done: true, order: 6, limit: "2025-09-20" },
-                        { id: 8, name: "Planejar viagem", description: "Escolher destino e reservar hospedagem.", tags: ["lazer", "planejamento"], done: false, order: 7, limit: "2025-09-21" },
-                        { id: 9, name: "Reunião com equipe", description: "Discutir metas do próximo trimestre.", tags: ["trabalho", "reunião"], done: false, order: 8, limit: "2025-09-22" },
-                        { id: 10, name: "Aprender TypeScript", description: "Converter projeto JS para TS.", tags: ["estudo", "programação"], done: false, order: 9, limit: "2025-09-23" },
-                        { id: 11, name: "Pagar contas", description: "Luz, internet e cartão de crédito.", tags: ["financeiro"], done: true, order: 10, limit: "2025-09-24" },
-                        { id: 12, name: "Escrever artigo", description: "Artigo sobre produtividade para o blog.", tags: ["escrita", "trabalho"], done: false, order: 11, limit: "2025-09-25" },
-                        { id: 13, name: "Exercícios físicos", description: "Treino de resistência e alongamento.", tags: ["saúde"], done: true, order: 12, limit: "2025-09-26" },
-                        { id: 14, name: "Assistir workshop", description: "Participar de workshop online de UI/UX.", tags: ["design", "aprendizado"], done: false, order: 13, limit: "2025-09-27" },
-                        { id: 15, name: "Organizar finanças", description: "Atualizar planilha de gastos mensais.", tags: ["financeiro"], done: false, order: 14, limit: "2025-09-28" },
-                        { id: 16, name: "Responder e-mails", description: "Limpar caixa de entrada e priorizar mensagens.", tags: ["trabalho", "comunicação"], done: true, order: 15, limit: "2025-09-29" },
-                        { id: 17, name: "Revisar código", description: "Fazer code review do novo módulo.", tags: ["backend", "programação"], done: false, order: 16, limit: "2025-09-30" },
-                        { id: 18, name: "Ler livro", description: "Avançar no capítulo 5 de 'Clean Code'.", tags: ["leitura", "estudo"], done: false, order: 17, limit: "2025-10-01" },
-                        { id: 19, name: "Atualizar currículo", description: "Adicionar experiências recentes.", tags: ["carreira"], done: true, order: 18, limit: "2025-10-02" },
-                        { id: 20, name: "Fazer testes", description: "Criar testes unitários para o módulo de login.", tags: ["programação", "qualidade"], done: false, order: 19, limit: "2025-10-03" },
-                        { id: 21, name: "Ligar para o suporte", description: "Resolver problema com a operadora.", tags: ["pessoal"], done: false, order: 20, limit: "2025-10-04" },
-                        { id: 22, name: "Cuidar das plantas", description: "Regar e podar plantas da varanda.", tags: ["casa", "lazer"], done: true, order: 21, limit: "2025-10-05" }]
+                        tasks: [
+                            { id: 1, name: "Revisar contrato", description: "Verificar cláusulas e prazos do novo contrato.", tags: ["trabalho", "urgente"], done: false, order: 0, limit: "2025-09-14" },
+                            { id: 2, name: "Estudar React", description: "Praticar hooks e componentização.", tags: ["estudo", "frontend"], done: false, order: 1, limit: "2025-09-15" },
+                            { id: 3, name: "Limpar o quarto", description: "Organizar livros e roupas.", tags: ["casa"], done: false, order: 2, limit: "2025-09-16" },
+                            { id: 4, name: "Fazer backup", description: "Salvar arquivos importantes no drive.", tags: ["segurança", "tecnologia"], done: false, order: 3, limit: "2025-09-17" },
+                            { id: 5, name: "Enviar relatório", description: "Relatório semanal de desempenho.", tags: ["trabalho", "relatório"], done: false, order: 4, limit: "2025-09-18" },
+                            { id: 6, name: "Comprar mantimentos", description: "Leite, frutas e produtos de limpeza.", tags: ["mercado", "casa"], done: false, order: 5, limit: "2025-09-19" },
+                            { id: 7, name: "Atualizar portfólio", description: "Adicionar projetos recentes no site pessoal.", tags: ["carreira", "design"], done: false, order: 6, limit: "2025-09-20" },
+                            { id: 8, name: "Planejar viagem", description: "Escolher destino e reservar hospedagem.", tags: ["lazer", "planejamento"], done: false, order: 7, limit: "2025-09-21" },
+                            { id: 9, name: "Reunião com equipe", description: "Discutir metas do próximo trimestre.", tags: ["trabalho", "reunião"], done: false, order: 8, limit: "2025-09-22" },
+                            { id: 10, name: "Aprender TypeScript", description: "Converter projeto JS para TS.", tags: ["estudo", "programação"], done: false, order: 9, limit: "2025-09-23" },
+                            { id: 11, name: "Pagar contas", description: "Luz, internet e cartão de crédito.", tags: ["financeiro"], done: false, order: 10, limit: "2025-09-24" },
+                            { id: 12, name: "Escrever artigo", description: "Artigo sobre produtividade para o blog.", tags: ["escrita", "trabalho"], done: false, order: 11, limit: "2025-09-25" },
+                            { id: 13, name: "Exercícios físicos", description: "Treino de resistência e alongamento.", tags: ["saúde"], done: false, order: 12, limit: "2025-09-26" },
+                            { id: 14, name: "Assistir workshop", description: "Participar de workshop online de UI/UX.", tags: ["design", "aprendizado"], done: false, order: 13, limit: "2025-09-27" },
+                            { id: 15, name: "Organizar finanças", description: "Atualizar planilha de gastos mensais.", tags: ["financeiro"], done: false, order: 14, limit: "2025-09-28" },
+                            { id: 16, name: "Responder e-mails", description: "Limpar caixa de entrada e priorizar mensagens.", tags: ["trabalho", "comunicação"], done: false, order: 15, limit: "2025-09-29" },
+                            { id: 17, name: "Revisar código", description: "Fazer code review do novo módulo.", tags: ["backend", "programação"], done: false, order: 16, limit: "2025-09-30" },
+                            { id: 18, name: "Ler livro", description: "Avançar no capítulo 5 de 'Clean Code'.", tags: ["leitura", "estudo"], done: false, order: 17, limit: "2025-10-01" },
+                            { id: 19, name: "Atualizar currículo", description: "Adicionar experiências recentes.", tags: ["carreira"], done: false, order: 18, limit: "2025-10-02" },
+                            { id: 20, name: "Fazer testes", description: "Criar testes unitários para o módulo de login.", tags: ["programação", "qualidade"], done: false, order: 19, limit: "2025-10-03" },
+                            { id: 21, name: "Ligar para o suporte", description: "Resolver problema com a operadora.", tags: ["pessoal"], done: false, order: 20, limit: "2025-10-04" },
+                            { id: 22, name: "Cuidar das plantas", description: "Regar e podar plantas da varanda.", tags: ["casa", "lazer"], done: false, order: 21, limit: "2025-10-05" }]
                     }]
             }
         ]
@@ -170,36 +171,39 @@ export function useProject() {
     }
 
     function completeTask(task: Task): void {
-        let tarefasAtualizadas = selectedProject!.tasks?.map(t => t.id === task.id ? { ...t, done: !t.done } : t);
-        let auxProjTemp = selectedProject!;
-        auxProjTemp!.tasks = tarefasAtualizadas;
-        let taskIndex = auxProjTemp.tasks?.findIndex(t => t.id === task.id);
-        auxProjTemp!.tasks!.forEach((item, index) => {
-            if (task.done) {
-                if (item.id === task.id) {
-                    item.order = auxProjTemp!.tasks!.reduce((ant, t) => { return t.order > ant.order ? t : ant }).order + 1;
-                }
-            } else {
-                if (index >= taskIndex!) {
-                    item.order = item.order === 0 ? 0 : item.order - 1;
-                }
-            }
-        })
-        if (task.done) {
-            toast.info("Tarefa reaberta", { autoClose: 2000 })
+        let tarefasAtualizadas = selectedProject!.tasks?.map(t =>
+            t.id === task.id ? { ...t, done: !t.done } : t
+        );
+        const tarefaAtualizada = tarefasAtualizadas!.find(t => t.id === task.id)!;
+        let pendentes = tarefasAtualizadas!.filter(t => !t.done && t.id !== task.id);
+        let concluidas = tarefasAtualizadas!.filter(t => t.done && t.id !== task.id);
+
+        if (tarefaAtualizada.done) {
+            concluidas.push(tarefaAtualizada);
+            toast.success("Tarefa completada", { autoClose: 2000 });
         } else {
-            toast.success("Tarefa completada", { autoClose: 2000 })
+            pendentes.push(tarefaAtualizada);
+            toast.info("Tarefa reaberta", { autoClose: 2000 });
         }
-        updateProject(auxProjTemp!);
-        setOriginalSelected(auxProjTemp!)
-        setSelectedProject(p => ({ ...p!, tasks: tarefasAtualizadas }))
+
+        tarefasAtualizadas = [...pendentes, ...concluidas];
+        tarefasAtualizadas = tarefasAtualizadas.map((t, index) => ({
+            ...t,
+            order: index
+        }));
+
+        const auxProjTemp = { ...selectedProject!, tasks: tarefasAtualizadas };
+        
+        updateProject(auxProjTemp);
+        setOriginalSelected(auxProjTemp);
+        setSelectedProject(p => ({ ...p!, tasks: tarefasAtualizadas }));
     }
 
     function deleteProject(proj: Project): void {
         let auxProjects = projects!.filter(p => p.id !== proj.id);
         setProjects(auxProjects);
         selectProject(auxProjects[0]);
-         toast.success("Projeto excluído", { autoClose: 2000 });
+        toast.success("Projeto excluído", { autoClose: 2000 });
     }
 
     function changeOrder(task: Task, direcao: string) {
