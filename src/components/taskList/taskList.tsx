@@ -35,7 +35,7 @@ export const TaskList: React.FC<TaskListData> = ({ tasks, openTaskMenu, setEditT
                             <span className={`titulo-descricao ${darkMode && !t.done ? 'dark-text' : ''}`}>{t.name}</span>
                             <span className={`descricao-tarefa ${darkMode && !t.done ? 'dark-text' : ''}`}>{t.description}</span>
                             <div className="div-tags">
-                                <span className="tag">{t.limit}</span>
+                                <span className="tag">{new Date(t.limit).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</span>
                                 {t.tags.map((tag, index) => (
                                     <span className="tag" key={index}>{tag}</span>
                                 ))}

@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Login } from "../pages/login/login";
-/* import { Home } from "../pages/home/home"; */
 import "./routes.css"
 import { DefaultDiv } from "../styles/global";
 import { ProjectsContainer } from "../containers/ProjectsContainer";

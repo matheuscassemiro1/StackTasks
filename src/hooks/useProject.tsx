@@ -193,7 +193,7 @@ export function useProject() {
         }));
 
         const auxProjTemp = { ...selectedProject!, tasks: tarefasAtualizadas };
-        
+
         updateProject(auxProjTemp);
         setOriginalSelected(auxProjTemp);
         setSelectedProject(p => ({ ...p!, tasks: tarefasAtualizadas }));
@@ -276,7 +276,7 @@ export function useProject() {
     const filterTask = (task: Task): boolean => {
         let onlyActivesTasksShowed: boolean = onlyActives ? !task.done : true;
         let selectedTag: boolean = activeTag ? task.tags.includes(activeTag) : true;
-        let stringSearch = task.name.toLowerCase().includes(searchString) || task.description.toLowerCase().includes(searchString) || task.tags.some(tag => tag.toLowerCase().includes(searchString)) || task.limit.includes(searchString)
+        let stringSearch = task.name.toLowerCase().includes(searchString) || task.description.toLowerCase().includes(searchString) || task.tags.some(tag => tag.toLowerCase().includes(searchString)) || new Date(task.limit).toLocaleDateString('pt-BR', {timeZone: "UTC"}).includes(searchString)
         return onlyActivesTasksShowed && selectedTag && stringSearch;
     }
 
@@ -300,6 +300,8 @@ export function useProject() {
         let auxProject = selectedProject!
         tempTasks.push(newTask as Task);
         auxProject!.tasks = tempTasks;
+        console.log("tasks")
+        console.log(tempTasks)
         updateProject(auxProject);
         setSelectedProject((previous) => (({ ...previous!, tasks: tempTasks })));
         toast.success("Tarefa criada", { autoClose: 2000 });
